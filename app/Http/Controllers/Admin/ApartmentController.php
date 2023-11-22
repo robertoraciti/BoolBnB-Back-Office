@@ -11,11 +11,12 @@ class ApartmentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $apartments = Apartment::orderBy('id', 'desc')->paginate(8);
+        return view('admin.apartments.index', compact('apartments'));
     }
 
     /**
