@@ -16,11 +16,11 @@ class ApartmentSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $_apartments = config("apartment");
+        $_apartments = config("apartments");
 
         foreach ($_apartments as $_apartment) {
             $apartment = new Apartment();
-            $apartment->user_id = $faker->numberBetween(1, 5);
+            $apartment->user_id = $faker->numberBetween(2, 6);
             $apartment->name = $_apartment['name'];
             $apartment->description = $_apartment['description'];
             $apartment->address = $_apartment['address'];
@@ -31,7 +31,7 @@ class ApartmentSeeder extends Seeder
             $apartment->beds = $_apartment['beds'];
             $apartment->bathrooms = $_apartment['bathrooms'];
             $apartment->mq = $_apartment['mq'];
-            $apartment->price = $faker->randomFloat(2);
+            $apartment->price = $faker->numberBetween(50, 200);
             $apartment->cover_image = $_apartment['cover_image'];
             $apartment->save();
 

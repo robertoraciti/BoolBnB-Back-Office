@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->name = 'User';
         $user->surname = 'Admin';
+        $user->date_of_birth = '1998-05-21';
         $user->email = 'admin@email.it';
         $user->password = Hash::make('password');
         $user->save();
@@ -29,8 +30,9 @@ class UserSeeder extends Seeder
             $user = new User();
             $user->name = $faker->firstName();
             $user->surname = $faker->lastName();
+            $user->date_of_birth = $faker->date();
             $user->email = $faker->email();
-            $user->password = Hash::make($faker->password());
+            $user->password = Hash::make($faker->password(6, 20));
             $user->save();
         }
     }
