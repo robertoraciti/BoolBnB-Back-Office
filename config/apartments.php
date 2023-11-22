@@ -11,7 +11,7 @@ return [
         "beds" => "4",
         "bathrooms" => "1",
         "mq" => "80",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230251233/198747529-interior-of-a-modern-living-room-with-a-sofa-a-cactus-and-a-window-3d-rendering.jpg",
 
     ],
     [
@@ -24,7 +24,7 @@ return [
         "beds" => "2",
         "bathrooms" => "1",
         "mq" => "50",
-        "cover_image" => "",
+        "cover_image" => "https://www.123rf.com/free-photo_198747516_interior-of-modern-meeting-room-with-green-walls-concrete-floor-long-conference-table-with-chairs.html",
     ],
     [
         "name" => "BB BnB near Vatican City",
@@ -36,7 +36,7 @@ return [
         "beds" => "2",
         "bathrooms" => "1",
         "mq" => "30",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230204891/197931452-interior-of-modern-empty-room-with-brick-walls-wooden-floor-and-big-windows-3d-rendering.jpg",
     ],
     [
         "name" => "Cheap rooms close to Termini Station",
@@ -48,7 +48,7 @@ return [
         "beds" => "2",
         "bathrooms" => "2",
         "mq" => "30",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230242145/198712380-luxury-bedroom-interior-3d-rendering-mock-up.jpg",
     ],
     [
         "name" => "Lovely apartment, in Suffolk street",
@@ -60,7 +60,7 @@ return [
         "beds" => "4",
         "bathrooms" => "2",
         "mq" => "80",
-        "cover_image" => "",
+        "cover_image" => "https://www.123rf.com/free-photo_198712715_interior-of-modern-living-room-with-tv-3d-render.html",
     ],
     [
         "name" => "Open space near St James's Square",
@@ -72,7 +72,7 @@ return [
         "beds" => "3",
         "bathrooms" => "1",
         "mq" => "100",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230242017/198712252-luxury-bedroom-with-red-walls-concrete-floor-comfortable-king-size-bed-and-round-window-with-city.jpg",
     ],
     [
         "name" => "Apartment near Savage Gardens",
@@ -84,7 +84,7 @@ return [
         "beds" => "3",
         "bathrooms" => "1",
         "mq" => "70",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/artforest/artforest2309/artforest230901541/213794768-futuristic-corridor-with-glowing-lights-in-a-modern-office-building.jpg",
     ],
     [
         "name" => "CCRooms, Cozy rooms affordable ",
@@ -96,7 +96,7 @@ return [
         "beds" => "1",
         "bathrooms" => "0",
         "mq" => "30",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230251190/198747486-interior-of-modern-meeting-room-with-white-walls-concrete-floor-long-wooden-table-with-chairs-and.jpg",
     ],
     [
         "name" => "Beautiful House Near Lake",
@@ -108,7 +108,7 @@ return [
         "beds" => "3",
         "bathrooms" => "2",
         "mq" => "120",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/zillrehman01/zillrehman012308/zillrehman01230800981/212031198-suspended-between-brick-walls-vertical-poster-display.jpg",
     ],
     [
         "name" => "Off-grid dome house on eco mango farm",
@@ -120,7 +120,7 @@ return [
         "beds" => "1",
         "bathrooms" => "1",
         "mq" => "25",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230238069/198652477-interior-of-a-living-room-in-loft-style-3d-render.jpg",
 
     ],
     [
@@ -133,7 +133,7 @@ return [
         "beds" => "4",
         "bathrooms" => "1",
         "mq" => "45",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230242325/198712854-interior-design-of-children-s-room-with-bookshelves-and-plants-rendering.jpg",
 
     ],
     [
@@ -146,7 +146,7 @@ return [
         "beds" => "3",
         "bathrooms" => "1",
         "mq" => "55",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230263726/198957413-3d-render-of-a-bedroom-interior-with-a-stack-of-books.jpg",
 
     ],
     [
@@ -159,7 +159,7 @@ return [
         "beds" => "6",
         "bathrooms" => "2",
         "mq" => "65",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/cc0collection/cc0collection2205/cc0collection220559656/186139338-bed-bedroom-interior-sheets-bedding-pillows-room-house-home-apartment-design-lamp-furniture.jpg",
 
     ],
     [
@@ -172,7 +172,7 @@ return [
         "beds" => "2",
         "bathrooms" => "1",
         "mq" => "35",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230239622/198655405-winter-bedroom-interior-with-a-big-window-a-chair-a-bookcase-and-a-lamp.jpg",
 
     ],
     [
@@ -186,7 +186,7 @@ return [
         "beds" => "2",
         "bathrooms" => "2",
         "mq" => "47",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230274204/199181430-lanterns-in-coffee-shop-vintage-effect-style-pictures.jpg",
     ],
     [
         "name" => "Forest Dream",
@@ -199,7 +199,7 @@ return [
         "beds" => "3",
         "bathrooms" => "1",
         "mq" => "51",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230234817/198639581-coffee-cup-on-wooden-table-in-cafe-shallow-depth-of-field.jpg",
     ],
     [
         "name" => "Room in Latina with view",
@@ -211,7 +211,7 @@ return [
         "beds" => "1",
         "bathrooms" => "1",
         "mq" => "40",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/pixander/pixander2309/pixander230909864/212777576-interior-of-modern-bedroom-with-grey-walls-wooden-floor-and-comfortable-double-bed.jpg",
     ],
     [
         "name" => "Luxury chalet sleeps",
@@ -223,7 +223,7 @@ return [
         "beds" => "7",
         "bathrooms" => "4",
         "mq" => "103",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/rotorania/rotorania2308/rotorania230804972/211275442-bedroom-interior-with-white-pillows-on-bedside-table-3d-render.jpg",
     ],
     [
         "name" => "Villa Golfo Aranci",
@@ -235,7 +235,7 @@ return [
         "beds" => "5",
         "bathrooms" => "4",
         "mq" => "82",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/studioaccendo/studioaccendo2308/studioaccendo230806584/211586139-interior-of-a-living-room-with-a-yellow-sofa-and-a-lamp-3d-render.jpg",
     ],
     [
         "name" => "Montargil, Portugal Farmhouse",
@@ -247,7 +247,7 @@ return [
         "beds" => "2",
         "bathrooms" => "1",
         "mq" => "36",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2301/virtosmedia230110968/197237822-lamp-in-hotel-room-interior-3d-rendering-and-illustration.jpg",
     ],
     [
         "name" => "Nice House In The Snowy Mountains",
@@ -260,7 +260,7 @@ return [
         "beds" => "3",
         "bathrooms" => "2",
         "mq" => "120",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230259139/198890461-interior-of-modern-dining-room-with-yellow-and-white-walls-concrete-floor-long-wooden-table-with.jpg",
     ],
     [
         "name" => "Beautiful House Near River",
@@ -272,7 +272,7 @@ return [
         "beds" => "2",
         "bathrooms" => "2",
         "mq" => "105",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/minny0012011/minny00120112212/minny0012011221200249/196843490-minimal-style-empty-wooden-room-cleaning-japandi-room-interior.jpg",
     ],
     [
         "name" => "Traiano guest house",
@@ -284,7 +284,7 @@ return [
         "beds" => "2",
         "bathrooms" => "1",
         "mq" => "35",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230239637/198655420-vase-with-yellow-flowers-in-the-room-3d-rendering.jpg",
 
     ],
     [
@@ -297,7 +297,7 @@ return [
         "beds" => "5",
         "bathrooms" => "2",
         "mq" => "25",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230274354/199181551-3d-rendering-of-empty-hospital-corridor-with-white-walls-and-green-doors.jpg",
 
     ],
     [
@@ -310,7 +310,7 @@ return [
         "beds" => "2",
         "bathrooms" => "3",
         "mq" => "250",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2303/virtosmedia230313806/199713658-modern-bedroom-interior-design-with-a-double-bed-and-a-poster-on-the-wall.jpg",
 
     ],
     [
@@ -323,7 +323,7 @@ return [
         "beds" => "2",
         "bathrooms" => "1",
         "mq" => "40",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/graphicglider/graphicglider2308/graphicglider230800735/211926289-interior-of-an-industrial-building-with-metal-stairs-3d-rendering.jpg",
 
     ],
     [
@@ -336,7 +336,7 @@ return [
         "beds" => "3",
         "bathrooms" => "1",
         "mq" => "70",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/cc0collection/cc0collection2205/cc0collection220535161/186109708-lights-dark-night-evening-windows-decor.jpg",
 
     ],
     [
@@ -349,7 +349,7 @@ return [
         "beds" => "1",
         "bathrooms" => "1",
         "mq" => "90",
-        "cover_image" => "",
+        "cover_image" => "https://www.123rf.com/free-photo_198736557_luxury-office-interior-with-furniture-and-sunlight-3d-rendering.html",
     ],
     [
         "name" => "BnB in the Center",
@@ -361,7 +361,7 @@ return [
         "beds" => "1",
         "bathrooms" => "2",
         "mq" => "90",
-        "cover_image" => "",
+        "cover_image" => "https://previews.123rf.com/images/virtosmedia/virtosmedia2302/virtosmedia230238532/198653523-interior-of-a-modern-living-room-with-pink-walls-purple-armchairs-and-electric-guitar-3d-rendering.jpg",
     ],
 
 
