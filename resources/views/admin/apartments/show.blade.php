@@ -4,8 +4,11 @@
 
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center">
-        <a href="{{ route('admin.apartments.index')}}" class="btn btn-primary">Torna indietro</a>
-        <a href="{{ route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Modifica</a>
+        <a href="{{ route('admin.apartments.index')}}" class="btn btn-primary">Go Back</a>
+        <a href="{{ route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Edit</a>
+        <button type="button" class="btn btn-outline-danger mx-1" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$apartment->id}}">
+            Delete
+          </button>
     </div>
     <h3 class="text-danger mt-5"> {{ $apartment->name }} </h3>
     <div class="row">
@@ -28,4 +31,8 @@
         </div>
         
     </div>
+@endsection
+
+@section('modal')
+    @include('partials.modals.apartments._modalDelete')
 @endsection

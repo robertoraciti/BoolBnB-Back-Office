@@ -29,4 +29,8 @@
     </div>
   </body>
 
+  @yield('modal')
+
+  @yield('scripts')
+
 </html>
