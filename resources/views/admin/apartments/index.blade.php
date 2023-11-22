@@ -2,7 +2,7 @@
 
 @section('content')
 <section class="container mt-5">
-    <a class="btn btn-primary" href="{{route('admin.apartments.create')}}">Aggiungi nuovo appartamento</a>
+    <a class="btn btn-primary" href="{{route('admin.apartments.create')}}">Add new apartment</a>
       <table class="table">
           <thead>
             <tr>
@@ -28,9 +28,9 @@
               <td>{{$apartment->mq}}</td>
               <td>{{$apartment->price}}</td>
               <td>
-                <a href= " {{ route('admin.apartments.show', $apartment )}}"> Dettagli </a>
-                <a href= " {{ route('admin.apartments.edit', $apartment )}}"> Modifica </a>
-                <a href= "#" data-bs-toggle="modal" data-bs-target="#delete-modal-{{$apartment->id}}"> Elimina </a>
+                <a href= " {{ route('admin.apartments.show', $apartment )}}"> Details </a>
+                <a href= " {{ route('admin.apartments.edit', $apartment )}}"> Edit </a>
+                <a href= "#" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$apartment->id}}"> Delete </a>
               </td>
             </tr>
               @endforeach
@@ -41,4 +41,11 @@
         {{ $apartments->links('pagination::bootstrap-5') }}
         
   </section>
+@endsection
+
+@section('modal')
+  @foreach ($apartments as $apartment)
+    @include('partials.modals.apartments._modalDelete')
+      
+  @endforeach
 @endsection

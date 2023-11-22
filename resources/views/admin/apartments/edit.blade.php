@@ -162,7 +162,7 @@
                 <textarea class="form-control" name="description" id="description" name="description">{{ old('description') ?? $apartment->description  }}</textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Aggiungi</button>
+            <button type="submit" class="btn btn-warning">Edit</button>
         </form>
     </div>
     @endsection
