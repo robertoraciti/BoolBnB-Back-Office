@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Apartment;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
 
 class ApartmentController extends Controller
@@ -22,22 +24,31 @@ class ApartmentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * *@return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $services = Service::all();
+        return view('admin.apartments.create', compact('services'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * *@return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $apartment = new Apartment();
+        $apartment->fill($data);
+        $apartment->save();
+        if (Arr::exists($data, 'services')) {
+            $apartment->services()->attach($data['services']);
+        }
+
+        return redirect()->route('admin.apartments.show', $apartment);
     }
 
     /**
