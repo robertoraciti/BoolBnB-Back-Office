@@ -44,11 +44,11 @@ class ApartmentController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Apartment  $apartment
-     * @return \Illuminate\Http\Response
+     * *@return \Illuminate\Http\Response
      */
     public function show(Apartment $apartment)
     {
-        //
+        return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
