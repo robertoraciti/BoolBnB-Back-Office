@@ -66,11 +66,13 @@ class ApartmentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Apartment  $apartment
-     * @return \Illuminate\Http\Response
+     * * @return \Illuminate\Http\Response
      */
     public function edit(Apartment $apartment)
     {
-        //
+        $services = Service::all();
+        $service_ids = $apartment->services->pluck('id')->toArray();
+        return view('admin.apartments.edit', compact('apartment','services','service_ids'));
     }
 
     /**
@@ -82,7 +84,15 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
-        //
+        $data = $request->all();
+        $apartment->update($data);
+        if (Arr::exists($data, 'services')) {
+            $apartment->services()->sync($data['services']);
+        }
+        else {
+            $apartment->services()->detach();
+        }
+        return redirect()->route('admin.apartments.show', $apartment);
     }
 
     /**
@@ -93,6 +103,7 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect()->route('admin.apartments.index');
     }
 }
