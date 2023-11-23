@@ -53,7 +53,10 @@
                             </div>
                         </div>
 
-                        
+                        <div class="mb-4 row">
+                            <label class="col-md-4 col-form-label text-md-right me-1" for="date_of_birth">Date of birth</label>
+                            <input class="form-control w-25 ms-2" type="date" id="date_of_birth" name="date_of_birth">
+                        </div>
 
                         <div class="mb-4 row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
