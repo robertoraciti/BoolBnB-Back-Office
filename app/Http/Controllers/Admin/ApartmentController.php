@@ -20,8 +20,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::orderBy('id', 'desc')->where('user_id', '=', Auth::id())->paginate(8);
-        // $apartments = Apartment::where('user_id', '=', Auth::id());
+        $apartments = Apartment::orderBy('id', 'desc')->paginate(8);
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -47,6 +46,8 @@ class ApartmentController extends Controller
         $data = $request->validated();
         $apartment = new Apartment();
         $apartment->fill($data);
+        $user = Auth::user()->id;
+        $apartment->user()->associate($user);
         $apartment->save();
         if (Arr::exists($data, 'services')) {
             $apartment->services()->attach($data['services']);
