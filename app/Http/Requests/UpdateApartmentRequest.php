@@ -44,46 +44,46 @@ class UpdateApartmentRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Name is required',
-            'name.string' => 'Name must be a string',
-            'name.max' => 'Name must be contains 100 characters',
+            'name.required' => 'The name is required',
+            'name.string' => 'The name must be a string',
+            'name.max' => 'The name must have a maximum of 100 characters',
 
-            'description.required' => 'Description is required',
-            'description.string' => 'Description must be a string',
+            'description.required' => 'The description is required',
+            'description.string' => 'The description must be a string',
 
-            'address.required' => 'Address is required',
-            'address.string' => 'Address must be a string',
+            'address.required' => 'The address is required',
+            'address.string' => 'The address must be a string',
 
-            'user.exists' => 'Invalid user',
+            'latitude.required' => 'The latitude is required',
+            'latitude.string' => 'The latitude must be a string',
 
-            'latitude.required' => 'Latitude is required',
-            'latitude.string' => 'Latitude must be a string',
+            'longitude.required' => 'The longitude is required',
+            'longitude.string' => 'The longitude must be a string',
 
-            'longitude.required' => 'Longitude is required',
-            'longitude.string' => 'Longitude must be a string',
+            'visibility.required' => 'The visibility is required',
+            'visibility.boolean' => 'The visibility must be a boolean value',
 
-            'visibility.required' => 'Visibility is required',
-            'visibility.boolean' => 'Visibility must be a boolean',
+            'rooms.required' => 'The rooms is required',
+            'rooms.numeric' => 'The rooms must be a number',
 
-            'rooms.required' => 'Rooms is required',
-            'rooms.numeric' => 'Rooms must be a number',
+            'beds.required' => 'The beds is required',
+            'beds.numeric' => 'The beds must be a number',
 
-            'beds.required' => 'Beds is required',
-            'beds.numeric' => 'Beds must be a number',
+            'bathrooms.required' => 'The bathrooms is required',
+            'bathrooms.numeric' => 'The bathrooms must be a number',
 
-            'bathrooms.required' => 'Bathrooms is required',
-            'bathrooms.numeric' => 'Bathrooms must be a number',
+            'mq.required' => 'The mq is required',
+            'mq.numeric' => 'The mq must be a number',
 
-            'mq.required' => 'Mq is required',
-            'mq.numeric' => 'Mq must be a number',
+            'price.required' => 'The price is required',
+            'price.numeric' => 'The price must be a number',
 
-            'price.required' => 'Price is required',
-            'price.numeric' => 'Price must be a number',
+            'cover_image.required' => 'The cover image is required',
+            'cover_image.url' => 'The cover_image must be a url',
 
-            'cover_image.required' => 'Cover_image is required',
-            'cover_image.url' => 'Cover_image must be an URL',
+            'user_id.exists' => 'The user ID is not valid',
 
-            'services.exists' => 'Invalid services',
+            'services.exists' => 'The selected services are not valid',
         ];
     }
 }
