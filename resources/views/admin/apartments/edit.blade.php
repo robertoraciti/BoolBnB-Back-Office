@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="container my-5">
 
         {{-- @if ($errors->any())
             <div class="alert alert-danger">
@@ -78,7 +78,9 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
+
+            <div class="d-flex mb-3 justify-content-between">
+            <div class="col-3">
                 <label for="rooms" class="form-label">Rooms</label>
                 <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms" name="rooms"
                     value="{{ old('rooms') ?? $apartment->rooms }}">
@@ -87,8 +89,9 @@
                         {{ $message }}
                     </div>
                 @enderror
+                
             </div>
-            <div class="mb-3">
+            <div class="col-3">
                 <label for="beds" class="form-label">Beds</label>
                 <input type="number" class="form-control @error('beds') is-invalid @enderror" id="beds" name="beds"
                     value="{{ old('beds') ?? $apartment->beds }}">
@@ -98,7 +101,7 @@
                     </div>
                 @enderror
             </div>
-            <div class="mb-3">
+            <div class="col-3">
                 <label for="bathrooms" class="form-label">Bathrooms</label>
                 <input type="number" class="form-control @error('bathrooms') is-invalid @enderror" id="bathrooms" name="bathrooms"
                     value="{{ old('bathrooms') ?? $apartment->bathrooms }}">
@@ -108,7 +111,9 @@
                     </div>
                 @enderror
             </div>
-            <div class="mb-3">
+        
+        </div>
+            <div class="mb-3 col-3">
                 <label for="mq" class="form-label">Mq</label>
                 <input type="number" class="form-control @error('mq') is-invalid @enderror" id="mq" name="mq"
                     value="{{ old('mq') ?? $apartment->mq }}">
