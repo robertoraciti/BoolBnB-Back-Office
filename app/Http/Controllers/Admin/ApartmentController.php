@@ -50,7 +50,7 @@ class ApartmentController extends Controller
             $apartment->services()->attach($data['services']);
         }
 
-        return redirect()->route('admin.apartments.show', $apartment);
+        return redirect()->route('admin.apartments.show', $apartment)->with('message_type','success')->with('message','Created with success');
     }
 
     /**
@@ -82,7 +82,7 @@ class ApartmentController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Apartment  $apartment
-     * @return \Illuminate\Http\Response
+     ** @return \Illuminate\Http\Response
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
@@ -94,19 +94,19 @@ class ApartmentController extends Controller
         else {
             $apartment->services()->detach();
         }
-        return redirect()->route('admin.apartments.show', $apartment);
+        return redirect()->route('admin.apartments.show', $apartment)->with('message_type','success')->with('message','Updated with success');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Apartment  $apartment
-     * @return \Illuminate\Http\Response
+     ** @return \Illuminate\Http\Response
      */
     public function destroy(Apartment $apartment)
     {
         $apartment->services()->detach();
         $apartment->delete();
-        return redirect()->route('admin.apartments.index');
+        return redirect()->route('admin.apartments.index')->with('message_type','danger')->with('message','Deleted with success');
     }
 }

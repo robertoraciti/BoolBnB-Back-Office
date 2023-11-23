@@ -35,4 +35,10 @@ class Apartment extends Model
     {
         return $this->belongsToMany(Service::class);
     }
+
+
+
+    public function getAddress ($chars = 35) {
+        return strlen($this->address) > $chars ? substr($this->address, 0, $chars) . " ..." :  $this->address;
+        }
 }

@@ -3,9 +3,9 @@
 @section('content')
     <div class="container my-5">
 
-        {{-- @if ($errors->any())
+        @if ($errors->any())
             <div class="alert alert-danger">
-                Correggi i seguenti errori:
+                Fix the following errors:
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>
@@ -14,7 +14,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif --}}
+        @endif
 
         <form action="{{ route('admin.apartments.update', $apartment) }}" enctype="multipart/form-data" method="POST">
             @csrf

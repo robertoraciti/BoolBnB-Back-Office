@@ -16,7 +16,7 @@
         <a href="{{ route('admin.apartments.edit', $apartment)}}" class="btn btn-warning">Edit <i class="fa-solid fa-pencil ms-1"></i></a>
         </div>
         <button type="button" class="btn btn-outline-danger mx-1" data-bs-toggle="modal" data-bs-target="#deleteModal-{{$apartment->id}}">
-            Delete
+            Delete <i class="fa-solid fa-trash text-danger ms-1"></i>
           </button>
     </div>
     <h3 class="text-info my-5 text-center"> {{ $apartment->name }} </h3>
