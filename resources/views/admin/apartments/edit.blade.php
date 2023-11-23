@@ -134,7 +134,7 @@
             </div>
 
             <label class="form-label">Services</label>
-            <div class="form-check" @error('services') is-invalid @enderror>
+            <div class="form-check " @error('services') is-invalid @enderror>
                 @foreach ($services as $service)
                     <input class="form-check-control" type="checkbox" value="{{ $service->id }}"
                         id="service-{{ $service->id }}" name="services[]"
