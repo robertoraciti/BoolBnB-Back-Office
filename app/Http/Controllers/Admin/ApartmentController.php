@@ -9,6 +9,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentController extends Controller
 {
@@ -45,12 +46,14 @@ class ApartmentController extends Controller
         $data = $request->validated();
         $apartment = new Apartment();
         $apartment->fill($data);
+        $user = Auth::user()->id;
+        $apartment->user()->associate($user);
         $apartment->save();
         if (Arr::exists($data, 'services')) {
             $apartment->services()->attach($data['services']);
         }
 
-        return redirect()->route('admin.apartments.show', $apartment)->with('message_type','success')->with('message','Created with success');
+        return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Created with success');
     }
 
     /**
@@ -74,7 +77,7 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
         $service_ids = $apartment->services->pluck('id')->toArray();
-        return view('admin.apartments.edit', compact('apartment','services','service_ids'));
+        return view('admin.apartments.edit', compact('apartment', 'services', 'service_ids'));
     }
 
     /**
@@ -90,11 +93,10 @@ class ApartmentController extends Controller
         $apartment->update($data);
         if (Arr::exists($data, 'services')) {
             $apartment->services()->sync($data['services']);
-        }
-        else {
+        } else {
             $apartment->services()->detach();
         }
-        return redirect()->route('admin.apartments.show', $apartment)->with('message_type','success')->with('message','Updated with success');
+        return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Updated with success');
     }
 
     /**
@@ -107,6 +109,6 @@ class ApartmentController extends Controller
     {
         $apartment->services()->detach();
         $apartment->delete();
-        return redirect()->route('admin.apartments.index')->with('message_type','danger')->with('message','Deleted with success');
+        return redirect()->route('admin.apartments.index')->with('message_type', 'danger')->with('message', 'Deleted with success');
     }
 }
