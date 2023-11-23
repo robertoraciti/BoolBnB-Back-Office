@@ -13,7 +13,7 @@ class UpdateApartmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -79,7 +79,7 @@ class UpdateApartmentRequest extends FormRequest
             'price.numeric' => 'The price must be a number',
 
             'cover_image.required' => 'The cover image is required',
-            'cover_image.url' => 'The cover_image must be a url',
+            'cover_image.url' => 'The cover image must be a url',
 
             'user_id.exists' => 'The user ID is not valid',
 
