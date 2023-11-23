@@ -46,7 +46,7 @@ class StoreApartmentRequest extends FormRequest
         return [
             'name.required' => 'The name is required',
             'name.string' => 'The name must be a string',
-            'name.max' => 'The name must have a maximum of 20 characters',
+            'name.max' => 'The name must have a maximum of 100 characters',
 
             'description.required' => 'The description is required',
             'description.string' => 'The description must be a string',
@@ -78,8 +78,8 @@ class StoreApartmentRequest extends FormRequest
             'price.required' => 'The price is required',
             'price.numeric' => 'The price must be a number',
 
-            'cover_image.required' => 'The cover_image is required',
-            'cover_image.url' => 'The cover_image must be a url',
+            'cover_image.required' => 'The cover image is required',
+            'cover_image.url' => 'The cover image must be a url',
 
             'user_id.exists' => 'The user ID is not valid',
 
