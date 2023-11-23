@@ -36,8 +36,8 @@ class StoreApartmentRequest extends FormRequest
             'mq' => ['required','numeric'],
             'price' => ['required','numeric'],
             'cover_image' => ['required', 'url'],
-            'services' => ['nullable','exist:services,id'],
-            'user_id' => ['nullable','exist:users,id'],
+            'services' => ['nullable','exists:services,id'],
+            'user_id' => ['nullable','exists:users,id'],
         ];
     }
 
@@ -81,9 +81,9 @@ class StoreApartmentRequest extends FormRequest
             'cover_image.required' => 'The cover_image is required',
             'cover_image.url' => 'The cover_image must be a url',
 
-            'user_id.exist' => 'The user ID is not valid',
+            'user_id.exists' => 'The user ID is not valid',
 
-            'services.exist' => 'The selected services are not valid',
+            'services.exists' => 'The selected services are not valid',
         ];
     }
 }
