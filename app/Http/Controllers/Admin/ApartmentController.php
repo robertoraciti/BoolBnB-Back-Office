@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\StoreApartmentRequest;
+use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Apartment;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -38,9 +40,9 @@ class ApartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * *@return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreApartmentRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $apartment = new Apartment();
         $apartment->fill($data);
         $apartment->save();
@@ -82,9 +84,9 @@ class ApartmentController extends Controller
      * @param  \App\Models\Apartment  $apartment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apartment)
+    public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $apartment->update($data);
         if (Arr::exists($data, 'services')) {
             $apartment->services()->sync($data['services']);
