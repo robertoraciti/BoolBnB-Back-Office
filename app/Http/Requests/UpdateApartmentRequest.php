@@ -35,7 +35,7 @@ class UpdateApartmentRequest extends FormRequest
             'beds' => ['required', 'numeric'],
             'bathrooms' => ['required', 'numeric'],
             'mq' => ['required', 'numeric'],
-            'price' => ['required', 'numeric'],
+            'price' => ['required', 'numeric','min:10'],
             'cover_image' => ['required', 'url'],
             'services' => ['nullable', 'exists:services,id'],
         ];
@@ -77,6 +77,7 @@ class UpdateApartmentRequest extends FormRequest
 
             'price.required' => 'The price is required',
             'price.numeric' => 'The price must be a number',
+            'price.min' => 'The price is too low',
 
             'cover_image.required' => 'The cover image is required',
             'cover_image.url' => 'The cover image must be a url',
