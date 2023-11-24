@@ -33,6 +33,7 @@
             <div class="col-8 row">
 
                 <div class="col-6"> <b>Address:</b> {{ $apartment->address }} </div>
+                <div class="col-6"> <b>Host:</b> {{ $apartment->user->name }} {{ $apartment->user->surname }} </div>
                 <div class="col-6"> <b>Latitude:</b> {{ $apartment->latitude }} </div>
                 <div class="col-6"> <b>Longitude:</b> {{ $apartment->longitude }} </div>
                 <div class="col-6"> <b>Rooms:</b> {{ $apartment->rooms }} </div>
