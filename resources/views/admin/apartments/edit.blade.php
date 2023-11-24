@@ -50,101 +50,127 @@
                     </div>
                 @enderror
             </div>
-
-            <div class="mb-3">
-                <label for="latitude" class="form-label">Latitude</label>
-                <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude"
-                    name="latitude" value="{{ old('latitude') ?? $apartment->latitude }}">
-                @error('latitude')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+            {{-- LOCATION--PRICE--VISIBILITY --}}
+            <div class="container">
+                <div class="row row-cols-2">
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Prezzo</label>
+                        <input type="float" class="form-control @error('price') is-invalid @enderror" id="price"
+                            name="price" value="{{ old('price') ?? $apartment->price }}">
+                        @error('price')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                @enderror
+
+                    <div class="mb-3">
+                        <label for="visibility" class="form-label">Visibility</label>
+                        <select name="visibility" id="visibility"
+                            class="form-select @error('visibility') is-invalid @enderror">
+                            <option value="0">Not visible</option>
+                            <option value="1">Visible</option>
+
+                        </select>
+                        @error('visibility')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="latitude" class="form-label">Latitude</label>
+                        <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude"
+                            name="latitude" value="{{ old('latitude') ?? $apartment->latitude }}">
+                        @error('latitude')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="longitude" class="form-label">Longitude</label>
+                        <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude"
+                            name="longitude" value="{{ old('longitude') ?? $apartment->longitude }}">
+                        @error('longitude')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label for="longitude" class="form-label">Longitude</label>
-                <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude"
-                    name="longitude" value="{{ old('longitude') ?? $apartment->longitude }}">
-                @error('longitude')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
 
-            <div class="mb-3">
-                <label for="visibility" class="form-label">Visibility</label>
-                <select name="visibility" id="visibility" class="form-select @error('visibility') is-invalid @enderror">
-                    <option value="0">Not visible</option>
-                    <option value="1">Visible</option>
-
-                </select>
-                @error('visibility')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
-
+            {{-- DETAILS ROW --}}
             <div class="d-flex mb-3 justify-content-between">
-                <div class="col-3">
-                    <label for="rooms" class="form-label">Rooms</label>
-                    <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
-                        name="rooms" value="{{ old('rooms') ?? $apartment->rooms }}">
-                    @error('rooms')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                <div class="container">
+                    <div class="row row-cols-3">
+                        <div class="col-3">
+                            <label for="rooms" class="form-label">Rooms</label>
+                            <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
+                                name="rooms" value="{{ old('rooms') ?? $apartment->rooms }}">
+                            @error('rooms')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
 
-                </div>
-                <div class="col-3">
-                    <label for="beds" class="form-label">Beds</label>
-                    <input type="number" class="form-control @error('beds') is-invalid @enderror" id="beds"
-                        name="beds" value="{{ old('beds') ?? $apartment->beds }}">
-                    @error('beds')
-                        <div class="invalid-feedback">
-                            {{ $message }}
                         </div>
-                    @enderror
-                </div>
-                <div class="col-3">
-                    <label for="bathrooms" class="form-label">Bathrooms</label>
-                    <input type="number" class="form-control @error('bathrooms') is-invalid @enderror" id="bathrooms"
-                        name="bathrooms" value="{{ old('bathrooms') ?? $apartment->bathrooms }}">
-                    @error('bathrooms')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                        <div class="col-3">
+                            <label for="beds" class="form-label">Beds</label>
+                            <input type="number" class="form-control @error('beds') is-invalid @enderror" id="beds"
+                                name="beds" value="{{ old('beds') ?? $apartment->beds }}">
+                            @error('beds')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
-                    @enderror
-                </div>
+                        <div class="col-3">
+                            <label for="bathrooms" class="form-label">Bathrooms</label>
+                            <input type="number" class="form-control @error('bathrooms') is-invalid @enderror"
+                                id="bathrooms" name="bathrooms" value="{{ old('bathrooms') ?? $apartment->bathrooms }}">
+                            @error('bathrooms')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
-            </div>
-            <div class="mb-3 col-3">
-                <label for="mq" class="form-label">Mq</label>
-                <input type="number" class="form-control @error('mq') is-invalid @enderror" id="mq" name="mq"
-                    value="{{ old('mq') ?? $apartment->mq }}">
-                @error('mq')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                        <div class="mb-3 col-3">
+                            <label for="mq" class="form-label">Mq</label>
+                            <input type="number" class="form-control @error('mq') is-invalid @enderror" id="mq"
+                                name="mq" value="{{ old('mq') ?? $apartment->mq }}">
+                            @error('mq')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
-                @enderror
+                </div>
             </div>
 
             <label class="form-label">Services</label>
-            <div class="form-check " @error('services') is-invalid @enderror>
-                @foreach ($services as $service)
-                    <input class="form-check-control" type="checkbox" value="{{ $service->id }}"
-                        id="service-{{ $service->id }}" name="services[]"
-                        @if (in_array($service->id, old('services', $service_ids) ?? [])) checked @endif>
-                    <label class="form-check-label" for="service-{{ $service->id }}">
-                        {{ $service->name }}
-                        <i class="fa-solid fa-{{ $service->icon }} mx-1"></i>
+            <div class="form-check container" @error('services') is-invalid @enderror>
+                <div class="row row-cols-4">
+                    @foreach ($services as $service)
+                        <div class="col">
+                            <input class="form-check-control" type="checkbox" value="{{ $service->id }}"
+                                id="service-{{ $service->id }}" name="services[]"
+                                @if (in_array($service->id, old('services', $service_ids) ?? [])) checked @endif>
+                            <label class="form-check-label" for="service-{{ $service->id }}">
+                                {{ $service->name }}
+                                <i class="fa-solid fa-{{ $service->icon }} mx-1"></i>
 
-                    </label>
-                @endforeach
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
             </div>
             @error('services')
                 <div class="invalid-feedback">
@@ -152,18 +178,9 @@
                 </div>
             @enderror
 
-            <div class="mb-3">
-                <label for="price" class="form-label">Prezzo</label>
-                <input type="float" class="form-control @error('price') is-invalid @enderror" id="price"
-                    name="price" value="{{ old('price') ?? $apartment->price }}">
-                @error('price')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
+            {{-- IMG AND DESCRIPTION --}}
 
-            <div class="col-3">
+            <div class="col-3 mt-5">
                 <label for="cover_image" class="form-label">Immagine</label>
                 <input type="url" name="cover_image" id="cover_image"
                     class="form-control @error('cover_image') is-invalid @enderror"
