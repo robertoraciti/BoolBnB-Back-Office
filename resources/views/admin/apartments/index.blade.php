@@ -38,9 +38,9 @@
                             <td class="text-center">{{ $apartment->mq }}</td>
                             <td class="text-center">€ {{ $apartment->price }}</td>
                             <td>
+                                <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
+                                        class="fa-solid fa-eye"></i></a>
                                 @if (Auth::id() == $apartment->user_id)
-                                    <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
-                                            class="fa-solid fa-eye"></i></a>
                                     <a href= " {{ route('admin.apartments.edit', $apartment) }}"> <i
                                             class="fa-solid fa-pencil mx-1 "></i> </a>
                                     <a href= "#" data-bs-toggle="modal"
