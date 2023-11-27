@@ -156,7 +156,7 @@
             </div>
 
             <label class="form-label">Services</label>
-            <div class="form-check container" @error('services') is-invalid @enderror>
+            <div class="form-check container @error('services') is-invalid  invalid-input p-2@enderror">
                 <div class="row row-cols-4">
                     @foreach ($services as $service)
                         <div class="col">
