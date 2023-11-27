@@ -9,16 +9,11 @@
 @section('head-scripts')
 <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
 
-<script>
-    tt.services.copyrights({
-        key: "k9U6D8g43D9rsDAaXC4vgkIc4Ko56P7d"
-    })
-        .then(function (results) {
-            console.log('Copyrights', results);
-        })
-        .catch(function (reason) {
-            console.log('Copyrights', reason);
-        })
+<script type="text/javascript">
+
+     
+
+
 </script>
 <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
 <link
@@ -60,7 +55,7 @@
 
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                <input type="search" onkeyup="getLocation(value)" class="form-control @error('address') is-invalid @enderror" id="address"
                     name="address" value="{{ old('address') }}">
                 @error('address')
                     <div class="invalid-feedback">
@@ -68,6 +63,8 @@
                     </div>
                 @enderror
             </div>
+
+            @include('partials._searchbox')
             {{-- PRICE--LOCATION--VISIBILITY --}}
 
             <div class="container">
@@ -215,15 +212,36 @@
     </div>
 @endsection
 
-{{-- @section('scripts')
+@section('scripts')
     <script type="text/javascript">
-        const inputFileElement = document.getElementById('cover_image');
-        const coverImagePreview = document.getElementById('cover_image_preview');
+
+    function getLocation($query) {
+        tt.services.geocode({
+                 key: "k9U6D8g43D9rsDAaXC4vgkIc4Ko56P7d",
+                 query: $query,
+                //  bestResult: true,
+             })
+             .then(function (results) {
+                 console.log(results);
+                //  let address = document.getElementById('address');
+                //  address.addEventListener("keyup", function() {
+                //      query = address.value.toUpperCase();
+                //      console.log(query);
+                //      })
+                // let lng = document.getElementById('longitude');
+                // let lat = document.getElementById('latitude');
+
+                // let lngVal = results.position.lng;
+                // let latVal = results.position.lat;
+
+                // lng.value = lngVal;
+                // lat.value = latVal;
 
 
-        inputFileElement.addEventListener('change', function() {
-            const [file] = this.files;
-            coverImagePreview.src = URL.createObjectURL(file);
-        })
+                // console.log(lng);
+                // console.log(lat);
+                 })
+        };
+        
     </script>
-@endsection --}}
+@endsection
