@@ -55,16 +55,17 @@
 
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="search" onkeyup="getLocation(value)" class="form-control @error('address') is-invalid @enderror" id="address"
+                <input type="hidden" class="form-control @error('address') is-invalid @enderror" id="address"
                     name="address" value="{{ old('address') }}">
                 @error('address')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
+                <div id="address_search"></div>
             </div>
 
-            @include('partials._searchbox')
+            {{-- @include('partials._searchbox') --}}
             {{-- PRICE--LOCATION--VISIBILITY --}}
 
             <div class="container">
@@ -94,7 +95,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="latitude" class="form-label">Latitude</label>
                         <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude"
                             name="latitude" value="{{ old('latitude') }}">
@@ -105,7 +106,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="longitude" class="form-label">Longitude</label>
                         <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude"
                             name="longitude" value="{{ old('longitude') }}">
@@ -215,33 +216,39 @@
 @section('scripts')
     <script type="text/javascript">
 
-    function getLocation($query) {
-        tt.services.geocode({
-                 key: "k9U6D8g43D9rsDAaXC4vgkIc4Ko56P7d",
-                 query: $query,
-                //  bestResult: true,
-             })
-             .then(function (results) {
-                 console.log(results);
-                //  let address = document.getElementById('address');
-                //  address.addEventListener("keyup", function() {
-                //      query = address.value.toUpperCase();
-                //      console.log(query);
-                //      })
-                // let lng = document.getElementById('longitude');
-                // let lat = document.getElementById('latitude');
+    var options = {
+        searchOptions: {
+          key: "k9U6D8g43D9rsDAaXC4vgkIc4Ko56P7d",
+          language: "it-IT",
+          limit: 5,
+        },
+        autocompleteOptions: {
+          key: "k9U6D8g43D9rsDAaXC4vgkIc4Ko56P7d",
+          language: "it-IT",
+        },
+      }
+      var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+      var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+      let address_search = document.getElementById('address_search')
+      address_search.append(searchBoxHTML)
 
-                // let lngVal = results.position.lng;
-                // let latVal = results.position.lat;
+      ttSearchBox.on("tomtom.searchbox.resultselected", function (data) {
 
-                // lng.value = lngVal;
-                // lat.value = latVal;
+        console.log(data.data.result.address.freeformAddress)
 
+        let address = document.getElementById('address');
+        let lng = document.getElementById('longitude');
+        let lat = document.getElementById('latitude');
 
-                // console.log(lng);
-                // console.log(lat);
-                 })
-        };
+        let addressVal = data.data.result.address.freeformAddress
+        let lngVal = data.data.result.position.lng;
+        let latVal = data.data.result.position.lat;
+
+        address.value = addressVal;
+        lng.value = lngVal;
+        lat.value = latVal;
+
+})
         
     </script>
 @endsection
