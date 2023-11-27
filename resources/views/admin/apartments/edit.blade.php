@@ -44,7 +44,7 @@
             @method('PUT')
 
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">Name *</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror " id="name"
                     name="name" value="{{ old('name') ?? $apartment->name }}">
                 @error('name')
@@ -55,7 +55,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="address" class="form-label">Address</label>
+                <label for="address" class="form-label">Address *</label>
                 <input type="hidden" class="form-control @error('address') is-invalid @enderror" id="address"
                     name="address" value="{{ old('address') ?? $apartment->address }}">
                 @error('address')
@@ -69,7 +69,7 @@
             <div class="container">
                 <div class="row row-cols-2">
                     <div class="mb-3">
-                        <label for="price" class="form-label">Prezzo</label>
+                        <label for="price" class="form-label">Price *</label>
                         <input type="float" class="form-control @error('price') is-invalid @enderror" id="price"
                             name="price" value="{{ old('price') ?? $apartment->price }}">
                         @error('price')
@@ -125,7 +125,7 @@
                 <div class="container">
                     <div class="row row-cols-3">
                         <div class="col-3">
-                            <label for="rooms" class="form-label">Rooms</label>
+                            <label for="rooms" class="form-label">Rooms *</label>
                             <input type="number" min="0" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
                                 name="rooms" value="{{ old('rooms') ?? $apartment->rooms }}">
                             @error('rooms')
@@ -136,7 +136,7 @@
 
                         </div>
                         <div class="col-3">
-                            <label for="beds" class="form-label">Beds</label>
+                            <label for="beds" class="form-label">Beds *</label>
                             <input type="number" class="form-control @error('beds') is-invalid @enderror" id="beds"
                                 name="beds" value="{{ old('beds') ?? $apartment->beds }}">
                             @error('beds')
@@ -146,7 +146,7 @@
                             @enderror
                         </div>
                         <div class="col-3">
-                            <label for="bathrooms" class="form-label">Bathrooms</label>
+                            <label for="bathrooms" class="form-label">Bathrooms *</label>
                             <input type="number" class="form-control @error('bathrooms') is-invalid @enderror"
                                 id="bathrooms" name="bathrooms" value="{{ old('bathrooms') ?? $apartment->bathrooms }}">
                             @error('bathrooms')
@@ -157,7 +157,7 @@
                         </div>
 
                         <div class="mb-3 col-3">
-                            <label for="mq" class="form-label">Mq</label>
+                            <label for="mq" class="form-label">Mq *</label>
                             <input type="number" class="form-control @error('mq') is-invalid @enderror" id="mq"
                                 name="mq" value="{{ old('mq') ?? $apartment->mq }}">
                             @error('mq')
@@ -170,7 +170,7 @@
                 </div>
             </div>
 
-            <label class="form-label">Services</label>
+            <label class="form-label">Services *</label>
             <div class="form-check container @error('services') is-invalid  invalid-input p-2 @enderror">
                 <div class="row row-cols-4">
                     @foreach ($services as $service)
@@ -201,7 +201,7 @@
                     
                 </div>
                 <div class="col-8">
-                    <label for="cover_image" class="form-label @error('cover_image') is-invalid @enderror">Cover Image</label>
+                    <label for="cover_image" class="form-label @error('cover_image') is-invalid @enderror">Cover Image *</label>
                     <input type="file" name="cover_image" id="cover_image" value="{{ old('cover_image') }}" class="form-control">
                     @error('cover_image')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -211,7 +211,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
+                <label for="description" class="form-label">Description *</label>
                 <textarea class="form-control" name="description" id="description" name="description">{{ old('description') ?? $apartment->description }}</textarea>
             </div>
 
