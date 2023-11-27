@@ -18,6 +18,9 @@
     <!-- css yield -->
     @yield('css')
 
+    {{-- HEAD SCRIPTS --}}
+    @yield('head-scripts')
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
   </head>

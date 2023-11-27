@@ -38,7 +38,9 @@ class Apartment extends Model
 
 
 
-    public function getAddress ($chars = 35) {
-        return strlen($this->address) > $chars ? substr($this->address, 0, $chars) . " ..." :  $this->address;
-        }
+    public function getAddress($chars = 35)
+    {
+        return strlen($this->address) > $chars ? substr($this->address, 0, $chars) . " ..." : $this->address;
+    }
+
 }

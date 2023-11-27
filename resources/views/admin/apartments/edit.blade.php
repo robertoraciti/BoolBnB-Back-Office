@@ -6,6 +6,20 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
+@section('head-scripts')
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
+/>
+@endsection
+
 
 
 
@@ -42,13 +56,14 @@
 
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                <input type="hidden" class="form-control @error('address') is-invalid @enderror" id="address"
                     name="address" value="{{ old('address') ?? $apartment->address }}">
                 @error('address')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
+                <div id="address_search"></div>
             </div>
             {{-- LOCATION--PRICE--VISIBILITY --}}
             <div class="container">
@@ -79,7 +94,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="latitude" class="form-label">Latitude</label>
                         <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude"
                             name="latitude" value="{{ old('latitude') ?? $apartment->latitude }}">
@@ -90,7 +105,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="longitude" class="form-label">Longitude</label>
                         <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude"
                             name="longitude" value="{{ old('longitude') ?? $apartment->longitude }}">
@@ -218,13 +233,50 @@
 @endsection
 
 @section('scripts')
+
     <script type="text/javascript">
-        const inputFileElement = document.getElementById('cover_image');
+
+    var options = {
+        searchOptions: {
+          key: "k9U6D8g43D9rsDAaXC4vgkIc4Ko56P7d",
+          language: "it-IT",
+          limit: 5,
+        },
+        autocompleteOptions: {
+          key: "k9U6D8g43D9rsDAaXC4vgkIc4Ko56P7d",
+          language: "it-IT",
+        },
+      }
+      var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
+      var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
+      let address_search = document.getElementById('address_search')
+      address_search.append(searchBoxHTML)
+
+      ttSearchBox.on("tomtom.searchbox.resultselected", function (data) {
+
+        console.log(data.data.result.address.freeformAddress)
+
+        let address = document.getElementById('address');
+        let lng = document.getElementById('longitude');
+        let lat = document.getElementById('latitude');
+
+        let addressVal = data.data.result.address.freeformAddress
+        let lngVal = data.data.result.position.lng;
+        let latVal = data.data.result.position.lat;
+
+        address.value = addressVal;
+        lng.value = lngVal;
+        lat.value = latVal;
+
+})
+
+  const inputFileElement = document.getElementById('cover_image');
         const coverImagePreview = document.getElementById('cover_image_preview');
 
         inputFileElement.addEventListener('change', function() {
             const [file] = this.files;
             coverImagePreview.src = URL.createObjectURL(file);
         })
+        
     </script>
 @endsection
