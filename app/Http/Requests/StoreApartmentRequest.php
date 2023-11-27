@@ -36,7 +36,7 @@ class StoreApartmentRequest extends FormRequest
             'mq' => ['required','numeric'],
             'price' => ['required','numeric', 'min:10'],
             'cover_image' => ['required', 'url'],
-            'services' => ['nullable','exists:services,id'],
+            'services' => ['required','exists:services,id'],
             'user_id' => ['nullable','exists:users,id'],
         ];
     }
@@ -85,6 +85,7 @@ class StoreApartmentRequest extends FormRequest
             'user_id.exists' => 'The user ID is not valid',
 
             'services.exists' => 'The selected services are not valid',
+            'services.required' => 'Select at least one service',
         ];
     }
 }
