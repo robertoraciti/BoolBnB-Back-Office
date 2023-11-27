@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.apartments.store') }}" method="POST">
+        <form action="{{ route('admin.apartments.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
 
             <div class="mb-3">
@@ -173,7 +173,22 @@
 
             {{-- IMG AND DESCRIPTION --}}
 
-            <div class="col-3 mt-5">
+            <div class="row mt-5 mb-3">
+                <div class="col-4" >
+                    <img src="https://placehold.co/400" class="img-fluid" alt="" id="cover_image_preview">
+                    
+                </div>
+                <div class="col-8">
+                    <label for="cover_image" class="form-label @error('cover_image') is-invalid @enderror">Cover Image</label>
+                    <input type="file" name="cover_image" id="cover_image" value="{{ old('cover_image') }}" class="form-control">
+                    @error('cover_image')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                
+            </div>
+
+            {{-- <div class="col-3 mt-5">
                 <label for="cover_image" class="form-label">Immagine</label>
                 <input type="url" name="cover_image" id="cover_image"
                     class="form-control @error('cover_image') is-invalid @enderror" value="{{ old('cover_image') }}">
@@ -182,7 +197,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
@@ -194,7 +209,7 @@
     </div>
 @endsection
 
-{{-- @section('scripts')
+@section('scripts')
     <script type="text/javascript">
         const inputFileElement = document.getElementById('cover_image');
         const coverImagePreview = document.getElementById('cover_image_preview');
@@ -205,4 +220,4 @@
             coverImagePreview.src = URL.createObjectURL(file);
         })
     </script>
-@endsection --}}
+@endsection
