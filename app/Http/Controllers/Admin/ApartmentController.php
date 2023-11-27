@@ -103,6 +103,8 @@ class ApartmentController extends Controller
     {
         $data = $request->validated();
 
+        $apartment->fill($data);
+
         if($request->hasFile('cover_image')) {
             if($apartment->cover_image){
                 Storage::delete($apartment->cover_image);
@@ -111,7 +113,8 @@ class ApartmentController extends Controller
             $apartment->cover_image = $cover_image_path;
         }
         
-        $apartment->update($data);
+        $apartment->save();
+        
         if (Arr::exists($data, 'services')) {
             $apartment->services()->sync($data['services']);
         } else {

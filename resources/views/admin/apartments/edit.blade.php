@@ -111,7 +111,7 @@
                     <div class="row row-cols-3">
                         <div class="col-3">
                             <label for="rooms" class="form-label">Rooms</label>
-                            <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
+                            <input type="number" min="0" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
                                 name="rooms" value="{{ old('rooms') ?? $apartment->rooms }}">
                             @error('rooms')
                                 <div class="invalid-feedback">
@@ -221,7 +221,6 @@
     <script type="text/javascript">
         const inputFileElement = document.getElementById('cover_image');
         const coverImagePreview = document.getElementById('cover_image_preview');
-
 
         inputFileElement.addEventListener('change', function() {
             const [file] = this.files;
