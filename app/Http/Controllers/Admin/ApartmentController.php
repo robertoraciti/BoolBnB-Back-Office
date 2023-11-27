@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
+
 use App\Models\Apartment;
 use App\Models\Service;
+
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Arr;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\Controller;
 
 class ApartmentController extends Controller
 {
@@ -48,6 +53,12 @@ class ApartmentController extends Controller
         $apartment->fill($data);
         $user = Auth::user()->id;
         $apartment->user()->associate($user);
+
+        if($request->hasFile('cover_image')) {
+            $cover_image_path = Storage::put("uploads/apartments/cover_image", $data['cover_image']);
+            $apartment->cover_image = $cover_image_path;
+        }
+
         $apartment->save();
         if (Arr::exists($data, 'services')) {
             $apartment->services()->attach($data['services']);
