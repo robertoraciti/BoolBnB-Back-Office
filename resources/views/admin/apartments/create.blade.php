@@ -6,6 +6,28 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
+@section('head-scripts')
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
+
+<script>
+    tt.services.copyrights({
+        key: "k9U6D8g43D9rsDAaXC4vgkIc4Ko56P7d"
+    })
+        .then(function (results) {
+            console.log('Copyrights', results);
+        })
+        .catch(function (reason) {
+            console.log('Copyrights', reason);
+        })
+</script>
+<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
+/>
+@endsection
+
 @section('content')
     <div class="container my-5">
 
