@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Carbon\Carbon;
 
 class RegisteredUserController extends Controller
 {
@@ -30,21 +31,25 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => [  'max:100'],
-            'surname' => [  'max:100'],
-            // request for date_of_birth
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $request->validate(
+            [
+                'name' => ['max:100'],
+                'surname' => ['max:100'],
+                'date_of_birth' => ['required', 'date', 'before:18 years ago'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ],
+        );
 
-        $user = User::create([
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'date_of_birth' => $request->date_of_birth,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = User::create(
+            [
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'date_of_birth' => $request->date_of_birth,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ],
+        );
 
         event(new Registered($user));
 
