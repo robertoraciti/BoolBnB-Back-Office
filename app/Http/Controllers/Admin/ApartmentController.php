@@ -101,6 +101,15 @@ class ApartmentController extends Controller
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
         $data = $request->validated();
+
+        if($request->hasFile('cover_image')) {
+            if($apartment->cover_image){
+                Storage::delete($apartment->cover_image);
+            }
+            $cover_image_path =  Storage::put("uploads/apartments/cover_image", $data['cover_image']);
+            $apartment->cover_image = $cover_image_path;
+        }
+
         $apartment->update($data);
         if (Arr::exists($data, 'services')) {
             $apartment->services()->sync($data['services']);
