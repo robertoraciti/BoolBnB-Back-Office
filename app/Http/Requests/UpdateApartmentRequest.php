@@ -36,7 +36,7 @@ class UpdateApartmentRequest extends FormRequest
             'bathrooms' => ['required', 'numeric'],
             'mq' => ['required', 'numeric'],
             'price' => ['required', 'numeric','min:10'],
-            'cover_image' => ['required', 'image'],
+            'cover_image' => ['nullable', 'image'],
             'services' => ['nullable', 'exists:services,id'],
         ];
     }
@@ -79,7 +79,7 @@ class UpdateApartmentRequest extends FormRequest
             'price.numeric' => 'The price must be a number',
             'price.min' => 'The price is too low',
 
-            'cover_image.required' => 'The cover image is required',
+            // 'cover_image.required' => 'The cover image is required',
             'cover_image.image' => 'The cover image must be a image',
 
             'user_id.exists' => 'The user ID is not valid',
