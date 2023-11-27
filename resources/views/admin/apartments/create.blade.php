@@ -265,6 +265,14 @@
         lat.value = latVal;
 
 })
+
+    const inputFileElement = document.getElementById('cover_image');
+    const coverImagePreview = document.getElementById('cover_image_preview');
+
+    inputFileElement.addEventListener('change', function() {
+        const [file] = this.files;
+        coverImagePreview.src = URL.createObjectURL(file);
+    })
         
     </script>
 @endsection

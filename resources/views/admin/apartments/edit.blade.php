@@ -7,17 +7,17 @@
 @endsection
 
 @section('head-scripts')
-<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-</script>
-<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
-/>
+    </script>
+        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
+    />
 @endsection
 
 
@@ -171,7 +171,7 @@
             </div>
 
             <label class="form-label">Services</label>
-            <div class="form-check container @error('services') is-invalid  invalid-input p-2@enderror">
+            <div class="form-check container @error('services') is-invalid  invalid-input p-2 @enderror">
                 <div class="row row-cols-4">
                     @foreach ($services as $service)
                         <div class="col">
@@ -210,18 +210,6 @@
                 
             </div>
 
-            {{-- <div class="col-3 mt-5">
-                <label for="cover_image" class="form-label">Immagine</label>
-                <input type="url" name="cover_image" id="cover_image"
-                    class="form-control @error('cover_image') is-invalid @enderror"
-                    value="{{ old('cover_image') ?? $apartment->cover_image }}">
-                @error('thumb')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div> --}}
-
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" name="description" id="description" name="description">{{ old('description') ?? $apartment->description }}</textarea>
@@ -232,8 +220,8 @@
     </div>
 @endsection
 
-@section('scripts')
 
+@section('scripts')
     <script type="text/javascript">
 
     var options = {
@@ -270,13 +258,14 @@
 
 })
 
-  const inputFileElement = document.getElementById('cover_image');
-        const coverImagePreview = document.getElementById('cover_image_preview');
+    const inputFileElement = document.getElementById('cover_image');
+    const coverImagePreview = document.getElementById('cover_image_preview');
 
-        inputFileElement.addEventListener('change', function() {
-            const [file] = this.files;
-            coverImagePreview.src = URL.createObjectURL(file);
-        })
+    inputFileElement.addEventListener('change', function() {
+        const [file] = this.files;
+        coverImagePreview.src = URL.createObjectURL(file);
+    })
         
     </script>
 @endsection
+        
