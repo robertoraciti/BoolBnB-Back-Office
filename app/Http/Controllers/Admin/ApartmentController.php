@@ -110,7 +110,7 @@ class ApartmentController extends Controller
             $cover_image_path =  Storage::put("uploads/apartments/cover_image", $data['cover_image']);
             $apartment->cover_image = $cover_image_path;
         }
-
+        
         $apartment->update($data);
         if (Arr::exists($data, 'services')) {
             $apartment->services()->sync($data['services']);
