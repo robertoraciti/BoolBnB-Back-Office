@@ -28,7 +28,7 @@
         <div class="row">
             {{-- ADD COVER_IMAGE --}}
             <div class="col-4">
-                <img src="{{ $apartment->cover_image }}" class="img-fluid">
+                <img src="{{ $apartment->cover_image ? asset('/storage/'.$apartment->cover_image) : "https://placehold.co/400" }}" class="img-fluid" id="cover_image_preview">
             </div>
             <div class="col-8 row">
 

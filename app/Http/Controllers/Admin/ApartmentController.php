@@ -60,6 +60,7 @@ class ApartmentController extends Controller
         }
 
         $apartment->save();
+        
         if (Arr::exists($data, 'services')) {
             $apartment->services()->attach($data['services']);
         }
