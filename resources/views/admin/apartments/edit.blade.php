@@ -126,7 +126,7 @@
                     <div class="row row-cols-3">
                         <div class="col-3">
                             <label for="rooms" class="form-label">Rooms</label>
-                            <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
+                            <input type="number" min="0" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
                                 name="rooms" value="{{ old('rooms') ?? $apartment->rooms }}">
                             @error('rooms')
                                 <div class="invalid-feedback">
@@ -171,7 +171,7 @@
             </div>
 
             <label class="form-label">Services</label>
-            <div class="form-check container" @error('services') is-invalid @enderror>
+            <div class="form-check container @error('services') is-invalid  invalid-input p-2@enderror">
                 <div class="row row-cols-4">
                     @foreach ($services as $service)
                         <div class="col">
@@ -194,8 +194,23 @@
             @enderror
 
             {{-- IMG AND DESCRIPTION --}}
+            
+            <div class="row mt-5 mb-3">
+                <div class="col-4" >
+                    <img src="{{$apartment->cover_image ? asset('/storage/'. $apartment->cover_image): "https://placehold.co/400"}}" class="img-fluid" alt="" id="cover_image_preview">
+                    
+                </div>
+                <div class="col-8">
+                    <label for="cover_image" class="form-label @error('cover_image') is-invalid @enderror">Cover Image</label>
+                    <input type="file" name="cover_image" id="cover_image" value="{{ old('cover_image') }}" class="form-control">
+                    @error('cover_image')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                
+            </div>
 
-            <div class="col-3 mt-5">
+            {{-- <div class="col-3 mt-5">
                 <label for="cover_image" class="form-label">Immagine</label>
                 <input type="url" name="cover_image" id="cover_image"
                     class="form-control @error('cover_image') is-invalid @enderror"
@@ -205,7 +220,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
@@ -218,6 +233,7 @@
 @endsection
 
 @section('scripts')
+
     <script type="text/javascript">
 
     var options = {
@@ -253,19 +269,14 @@
         lat.value = latVal;
 
 })
-        
-    </script>
-@endsection
 
-{{-- @section('scripts')
-    <script type="text/javascript">
-        const inputFileElement = document.getElementById('cover_image');
+  const inputFileElement = document.getElementById('cover_image');
         const coverImagePreview = document.getElementById('cover_image_preview');
-
 
         inputFileElement.addEventListener('change', function() {
             const [file] = this.files;
             coverImagePreview.src = URL.createObjectURL(file);
         })
+        
     </script>
-@endsection --}}
+@endsection

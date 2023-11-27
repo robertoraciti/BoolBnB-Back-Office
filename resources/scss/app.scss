@@ -3,3 +3,8 @@
 table a {
     text-decoration: none !important;
 }
+
+.invalid-input {
+    border: 1px solid red;
+    border-radius: 10px;
+}
