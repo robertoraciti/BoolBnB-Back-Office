@@ -31,11 +31,11 @@ class UpdateApartmentRequest extends FormRequest
             'latitude' => ['required', 'string'],
             'longitude' => ['required', 'string'],
             'visibility' => ['required', 'boolean'],
-            'rooms' => ['required', 'numeric'],
-            'beds' => ['required', 'numeric'],
-            'bathrooms' => ['required', 'numeric'],
-            'mq' => ['required', 'numeric'],
-            'price' => ['required', 'numeric','min:10'],
+            'rooms' => ['required', 'numeric', 'min:1'],
+            'beds' => ['required', 'numeric', 'min:1'],
+            'bathrooms' => ['required', 'numeric', 'min:1'],
+            'mq' => ['required', 'numeric', 'min:20'],
+            'price' => ['required', 'numeric', 'min:10'],
             'cover_image' => ['nullable', 'image'],
             'services' => ['required', 'exists:services,id'],
         ];
@@ -65,15 +65,19 @@ class UpdateApartmentRequest extends FormRequest
 
             'rooms.required' => 'The rooms is required',
             'rooms.numeric' => 'The rooms must be a number',
+            'rooms.min' => 'The rooms must be at least one',
 
             'beds.required' => 'The beds is required',
             'beds.numeric' => 'The beds must be a number',
+            'beds.min' => 'The beds must be at least one',
 
             'bathrooms.required' => 'The bathrooms is required',
             'bathrooms.numeric' => 'The bathrooms must be a number',
+            'bathrooms.min' => 'The bathrooms must be at least one',
 
             'mq.required' => 'The mq is required',
             'mq.numeric' => 'The mq must be a number',
+            'mq.min' => 'The mq must be at least 20',
 
             'price.required' => 'The price is required',
             'price.numeric' => 'The price must be a number',

@@ -54,13 +54,13 @@ class ApartmentController extends Controller
         $user = Auth::user()->id;
         $apartment->user()->associate($user);
 
-        if($request->hasFile('cover_image')) {
+        if ($request->hasFile('cover_image')) {
             $cover_image_path = Storage::put("uploads/apartments/cover_image", $data['cover_image']);
             $apartment->cover_image = $cover_image_path;
         }
 
         $apartment->save();
-        
+
         if (Arr::exists($data, 'services')) {
             $apartment->services()->attach($data['services']);
         }
@@ -103,19 +103,19 @@ class ApartmentController extends Controller
     {
         $data = $request->validated();
         // $apartment->fill($data);
-        
+
         // dd($apartment->cover_image);
-        
-        if($request->hasFile('cover_image')) {
-            if($apartment->cover_image){
+
+        if ($request->hasFile('cover_image')) {
+            if ($apartment->cover_image) {
                 Storage::delete($apartment->cover_image);
             }
-            $cover_image_path =  Storage::put("uploads/apartments/cover_image", $data['cover_image']);
+            $cover_image_path = Storage::put("uploads/apartments/cover_image", $data['cover_image']);
             $apartment->cover_image = $cover_image_path;
         }
-        
+
         $apartment->save();
-        
+
         if (Arr::exists($data, 'services')) {
             $apartment->services()->sync($data['services']);
         } else {
@@ -133,7 +133,7 @@ class ApartmentController extends Controller
     public function destroy(Apartment $apartment)
     {
         $apartment->services()->detach();
-        if($apartment->cover_image) {
+        if ($apartment->cover_image) {
             Storage::delete($apartment->cover_image);
         }
         $apartment->delete();
