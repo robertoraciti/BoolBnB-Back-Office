@@ -17,8 +17,9 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::select('id','type_id','name','description')
+        $apartments = Apartment::select('id','user_id','name','description','address','latitude','longitude','rooms','beds','bathrooms','mq','price','cover_image')
             ->with('services:id,name,icon')
+            ->where('visibility', 1)
             ->orderBy('id', 'desc')
             ->paginate(12);
 
@@ -26,9 +27,9 @@ class ApartmentController extends Controller
                 abort(404, 'apartments not found');
             }    
         // foreach ($apartments as $apartment) {
-            // $apartment->description = $apartment->getAbstract(200);
-            // if there was a cover image
-            // $apartment->cover_image = $apartment->getAbsUriImage();
+        //     // $apartment->description = $apartment->getAbstract(200);
+        //     // cover image
+        //     $apartment->cover_image = $apartment->getAbsUriImage();
         // }
 
         return response()->json($apartments);
@@ -53,9 +54,9 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::select('id','type_id','name','slug','description')
-            ->with('technologies:id,colour,label','type:id,colour,name')
-            // ->where('slug', $slug)
+        $apartment = Apartment::select('id','user_id','name','description','address','latitude','longitude','rooms','beds','bathrooms','mq','price')
+            ->with('services:id,name,icon')
+            ->where('id', $id)
             ->first();
 
             if (!$apartment) {
@@ -90,6 +91,11 @@ class ApartmentController extends Controller
     {
         //
     }
+
+    public function getAbsUriImage() {
+        return asset('storage/uploads/apartments/cover_image' . $this->cover_image);
+    }
+
 
     // public function portfolioByType($type_id)
     // {   
