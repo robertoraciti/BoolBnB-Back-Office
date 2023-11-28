@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Service;
+use App\Models\Message;
+use App\Models\Advertisement;
 
 class Apartment extends Model
 {
@@ -36,11 +38,25 @@ class Apartment extends Model
         return $this->belongsToMany(Service::class);
     }
 
-
-
     public function getAddress($chars = 35)
     {
         return strlen($this->address) > $chars ? substr($this->address, 0, $chars) . " ..." : $this->address;
     }
+    
+    public function messages(){
 
+        return $this->hasMany(Message::class);
+
+    }
+
+    public function views(){
+
+        return $this->hasMany(View::class);
+
+    }
+
+    public function advertisements()
+    {
+        return $this->belongsToMany(Advertisement::class);
+    }
 }
