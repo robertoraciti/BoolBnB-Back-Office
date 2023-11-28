@@ -20,6 +20,7 @@
 
     {{-- HEAD SCRIPTS --}}
     @yield('head-scripts')
+    @yield('style')
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
