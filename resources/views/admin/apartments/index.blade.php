@@ -11,23 +11,24 @@
     <section class="container mt-5">
         <a class="btn btn-primary" href="{{ route('admin.apartments.create') }}"><i class="fa-solid fa-plus me-2"></i>Add new
             apartment </a>
-        <div class="my-5">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Address</th>
-                        <th scope="col" class="text-center">Rooms</th>
-                        <th scope="col" class="text-center">Beds</th>
-                        <th scope="col" class="text-center">Bathrooms</th>
-                        <th scope="col" class="text-center">Mq</th>
-                        <th scope="col" class="text-center">Price</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($apartments as $apartment)
+            <div class="my-5">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col" class="text-center">Rooms</th>
+                            <th scope="col" class="text-center">Beds</th>
+                            <th scope="col" class="text-center">Bathrooms</th>
+                            <th scope="col" class="text-center">Mq</th>
+                            <th scope="col" class="text-center">Price</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($apartments as $apartment)
+                        @if (Auth::id() == $apartment->user_id)
                         <tr>
                             <td>{{ $apartment->id }}</td>
                             <td>{{ $apartment->name }}</td>
@@ -39,22 +40,21 @@
                             <td class="text-center">€ {{ $apartment->price }}</td>
                             <td>
                                 <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
-                                        class="fa-solid fa-eye"></i></a>
-                                @if (Auth::id() == $apartment->user_id)
+                                    class="fa-solid fa-eye"></i></a>
                                     <a href= " {{ route('admin.apartments.edit', $apartment) }}"> <i
-                                            class="fa-solid fa-pencil mx-1 "></i> </a>
-                                    <a href= "#" data-bs-toggle="modal"
+                                        class="fa-solid fa-pencil mx-1 "></i> </a>
+                                        <a href= "#" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal-{{ $apartment->id }}"> <i
-                                            class="fa-solid fa-trash text-danger"></i> </a>
+                                        class="fa-solid fa-trash text-danger"></i> </a>
+                                    </td>
+                                </tr>
                                 @endif
-                            </td>
-                        </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
+                                @endforeach
+                                {{-- {{ $apartments->links('pagination::bootstrap-5') }} --}}
+                                    
+                                </tbody>
+                            </table>
         </div>
-        {{ $apartments->links('pagination::bootstrap-5') }}
 
     </section>
 @endsection
