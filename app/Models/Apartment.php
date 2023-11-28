@@ -24,7 +24,7 @@ class Apartment extends Model
         'bathrooms',
         'mq',
         'price',
-        'cover_image',
+        // 'cover_image',
     ];
 
     public function user()

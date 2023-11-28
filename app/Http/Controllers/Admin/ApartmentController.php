@@ -102,10 +102,10 @@ class ApartmentController extends Controller
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
         $data = $request->validated();
-        // $apartment->fill($data);
-
-        // dd($apartment->cover_image);
-
+        // dd($data);
+        $apartment->fill($data);
+        
+        
         if ($request->hasFile('cover_image')) {
             if ($apartment->cover_image) {
                 Storage::delete($apartment->cover_image);
