@@ -30,4 +30,6 @@ Route::middleware(['auth', 'verified'])
 
   });
 
+Route::get('/register', 'AuthController@index');
+
 require __DIR__ . '/auth.php';

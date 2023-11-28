@@ -50,7 +50,7 @@
                                 </tr>
                                 @endif
                                 @endforeach
-                                {{-- {{ $apartments->links('pagination::bootstrap-5') }} --}}
+                                {{ $apartments->links('pagination::bootstrap-5') }}
                                     
                                 </tbody>
                             </table>

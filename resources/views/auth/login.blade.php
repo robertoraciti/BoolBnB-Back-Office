@@ -30,6 +30,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input type="checkbox" class="me-2 mt-3" onclick="showPsw()">Show Password
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -70,4 +71,18 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+    function showPsw() {
+        let psw = document.getElementById("password");
+        if (psw.type === "password") {
+            psw.type = "text";
+        } else {
+            psw.type = "password";
+  }
+
+        }
+    </script>
 @endsection
