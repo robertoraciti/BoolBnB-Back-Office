@@ -13,6 +13,11 @@
 
 @section('style')
     <style>
+
+        .parsley-errors-list {
+            padding: 0;
+            margin: 0;
+        }
         .parsley-errors-list li{
             color: red;
             list-style:none ;
@@ -90,7 +95,7 @@
                                     birth*</label>
                                 <div class="col-md-6">
                                     <input class="form-control w-50 @error('date_of_birth') is-invalid @enderror"
-                                        type="date" id="date_of_birth" name="date_of_birth" required>
+                                        type="date" id="date_of_birth" name="date_of_birth" required max="11/27/2005" data-parsley-error-message="You must be 18 years old">
                                     @error('date_of_birth')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>You must be 18 years old</strong>
@@ -107,7 +112,7 @@
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password" data-parsley-length="[8,20]" data-parsley-trigger="keyup">
-                                        <input type="checkbox" class="me-2 mt-3" onclick="showPsw1()">Show Password
+                                        <input type="checkbox" class="me-2 mt-1" onclick="showPsw1()">Show Password
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -124,7 +129,7 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required data-parsley-equalto="#password" autocomplete="new-password" data-parsley-trigger="keyup">
-                                        <input type="checkbox" class="me-2 mt-3" onclick="showPsw2()">Show Password
+                                        <input type="checkbox" class="me-2 mt-1" onclick="showPsw2()">Show Password
                                 </div>
                             </div>
 
