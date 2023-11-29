@@ -6,7 +6,6 @@
     
     {{ $apartments->links('pagination::bootstrap-5') }}
     @foreach ($apartments as $apartment)
-     @if (Auth::id() == $apartment->user_id)
      <div class="col-3">
 
        <div class="card" style="width: 18rem;">
@@ -26,7 +25,6 @@
          </div>
        </div>
      </div>
-     @endif
      @endforeach
      
    </div>
