@@ -27,11 +27,11 @@ class ApartmentController extends Controller
                 abort(404, 'apartments not found');
             }    
             // TO DO: Insert image
-        // foreach ($apartments as $apartment) {
-        //     // $apartment->description = $apartment->getAbstract(200);
-        //     // cover image
-        //     $apartment->cover_image = $apartment->getAbsUriImage();
-        // }
+        foreach ($apartments as $apartment) {
+            $apartment->description = $apartment->getAbstract(200);
+            // cover image
+            $apartment->cover_image = $apartment->getAbsUriImage();
+        }
 
         return response()->json($apartments);
     }
@@ -55,7 +55,7 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::select('id','user_id','name','description','address','latitude','longitude','rooms','beds','bathrooms','mq','price')
+        $apartment = Apartment::select('id','user_id','name','description','address','latitude','longitude','rooms','beds','bathrooms','mq','price','cover_image')
             ->with('services:id,name,icon')
             ->where('id', $id)
             ->first();
@@ -65,7 +65,7 @@ class ApartmentController extends Controller
             }
 
             // if there was a cover image  
-            // $apartment->cover_image = $apartment->getAbsUriImage();
+            $apartment->cover_image = $apartment->getAbsUriImage();
 
         return response()->json($apartment);
     }
