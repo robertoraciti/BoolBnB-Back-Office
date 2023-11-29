@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
             ApartmentSeeder::class,
             ServiceSeeder::class,
             ApartmentServiceSeeder::class,
+            MessageSeeder::class,
+            ViewSeeder::class,
+            AdvertisementSeeder::class,
         ]);
     }
 }
