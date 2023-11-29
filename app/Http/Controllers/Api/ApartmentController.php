@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Apartment;
 use App\Models\Service;
+use Illuminate\Support\Facades\DB;
 
 class ApartmentController extends Controller
 {
@@ -17,16 +18,16 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::select('id','user_id','name','description','address','latitude','longitude','rooms','beds','bathrooms','mq','price','cover_image')
+        $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
             ->where('visibility', 1)
             ->orderBy('id', 'desc')
             ->paginate(12);
 
-            if (!$apartments) {
-                abort(404, 'apartments not found');
-            }    
-            // TO DO: Insert image
+        if (!$apartments) {
+            abort(404, 'apartments not found');
+        }
+        // TO DO: Insert image
         foreach ($apartments as $apartment) {
             $apartment->description = $apartment->getAbstract(200);
             // cover image
@@ -37,17 +38,6 @@ class ApartmentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -55,48 +45,46 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::select('id','user_id','name','description','address','latitude','longitude','rooms','beds','bathrooms','mq','price','cover_image')
+        $apartment = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
             ->where('id', $id)
             ->first();
 
-            if (!$apartment) {
-                abort(404, 'Apartment not found');
-            }
+        if (!$apartment) {
+            abort(404, 'Apartment not found');
+        }
 
-            // if there was a cover image  
-            $apartment->cover_image = $apartment->getAbsUriImage();
+        // if there was a cover image  
+        $apartment->cover_image = $apartment->getAbsUriImage();
 
         return response()->json($apartment);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function search($address)
     {
-        //
+        $apartment = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+            ->with('services:id,name,icon')
+            ->where('address', "LIKE", "%" . $address . "%")
+            // ->where('latitude', $latitude)
+            // ->where('longitude', $longitude)
+            // ->where('rooms', '>=', $rooms)
+            // ->where('beds', '>=', $beds)
+            ->get();
+
+        if (!$apartment) {
+            abort(404, 'Apartment not found');
+        }
+
+        // if there was a cover image  
+        // $apartment->cover_image = $apartment->getAbsUriImage();
+
+        return response()->json($apartment);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function getAbsUriImage()
     {
-        //
-    }
-
-    public function getAbsUriImage() {
         return asset('storage/uploads/apartments/cover_image' . $this->cover_image);
     }
-
 
     // public function portfolioByType($type_id)
     // {   
