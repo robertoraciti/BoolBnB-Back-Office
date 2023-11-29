@@ -7,20 +7,34 @@
 @endsection
 
 @section('head-scripts')
-<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
-
-<script type="text/javascript">
-
-     
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/services/services-web.min.js"></script>
 
 
-</script>
-<script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
-/>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@endsection
+
+@section('style')
+    <style>
+
+        .parsley-errors-list {
+            padding: 0;
+            margin: 0;
+        }
+        .parsley-errors-list li{
+            color: red;
+            list-style:none ;
+
+        }
+    </style>
+
 @endsection
 
 @section('content')
@@ -45,13 +59,13 @@
             </div>
         @endif
 
-        <form action="{{ route('admin.apartments.store') }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('admin.apartments.store') }}" enctype="multipart/form-data" method="POST" id="create-form">
             @csrf
 
             <div class="mb-3">
                 <label for="name" class="form-label">Name *</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror " id="name"
-                    name="name" value="{{ old('name') }}">
+                    name="name" value="{{ old('name') }}" required data-parsley-pattern="[a-zA-Z]+$" data-parsley-trigger="keyup">
                 @error('name')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -78,8 +92,8 @@
                 <div class="row row-cols-2">
                     <div class="mb-3">
                         <label for="price" class="form-label">Price *</label>
-                        <input type="float" class="form-control @error('price') is-invalid @enderror" id="price"
-                            name="price" value="{{ old('price') }}">
+                        <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
+                            name="price" value="{{ old('price') }}" required data-parsley-trigger="keyup">
                         @error('price')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -133,7 +147,7 @@
                     <div class="mb-3">
                         <label for="rooms" class="form-label">Rooms *</label>
                         <input type="number" class="form-control @error('rooms') is-invalid @enderror" id="rooms"
-                            name="rooms" value="{{ old('rooms') }}">
+                            name="rooms" value="{{ old('rooms') }}" required data-parsley-type="number" data-parsley-trigger="keyup" min="1">
                         @error('rooms')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -143,7 +157,7 @@
                     <div class="mb-3">
                         <label for="beds" class="form-label">Beds *</label>
                         <input type="number" class="form-control @error('beds') is-invalid @enderror" id="beds"
-                            name="beds" value="{{ old('beds') }}">
+                            name="beds" value="{{ old('beds') }}" required data-parsley-type="number" data-parsley-trigger="keyup" min="1">
                         @error('beds')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -153,7 +167,7 @@
                     <div class="mb-3">
                         <label for="bathrooms" class="form-label">Bathrooms *</label>
                         <input type="number" class="form-control @error('bathrooms') is-invalid @enderror" id="bathrooms"
-                            name="bathrooms" value="{{ old('bathrooms') }}">
+                            name="bathrooms" value="{{ old('bathrooms') }}" required data-parsley-type="number" data-parsley-trigger="keyup" min="1">
                         @error('bathrooms')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -163,7 +177,7 @@
                     <div class="mb-3">
                         <label for="mq" class="form-label">Mq *</label>
                         <input type="number" class="form-control @error('mq') is-invalid @enderror" id="mq"
-                            name="mq" value="{{ old('mq') }}">
+                            name="mq" value="{{ old('mq') }}" required data-parsley-type="number" data-parsley-trigger="keyup" min="20">
                         @error('mq')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -182,7 +196,7 @@
                     @foreach ($services as $service)
                         <div class="col">
                             <input class="form-check-control" type="checkbox" value="{{ $service->id }}"
-                                id="service-{{ $service->id }}" name="services[]"
+                                id="service-{{ $service->id }}" required data-parsley-error-message="Insert at least one service" name="services[]"
                                 @if (in_array($service->id, old('services') ?? [])) checked @endif>
                             <label class="form-check-label" for="service-{{ $service->id }}">
                                 {{ $service->name }} <i class="fa-solid fa-{{ $service->icon }} mx-1"></i>
@@ -206,7 +220,7 @@
                 </div>
                 <div class="col-8">
                     <label for="cover_image" class="form-label @error('cover_image') is-invalid @enderror">Cover Image *</label>
-                    <input type="file" name="cover_image" id="cover_image" value="{{ old('cover_image') }}" class="form-control">
+                    <input type="file" name="cover_image" id="cover_image" value="{{ old('cover_image') }}" class="form-control" required>
                     @error('cover_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -216,7 +230,7 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description *</label>
-                <textarea class="form-control" name="description" id="description" name="description">{{ old('description') }}</textarea>
+                <textarea class="form-control" name="description" id="description" required name="description">{{ old('description') }}</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i>Add</button>
@@ -269,5 +283,8 @@
         coverImagePreview.src = URL.createObjectURL(file);
     })
         
+    </script>
+    <script type="text/javascript">
+        $('#create-form').parsley();
     </script>
 @endsection
