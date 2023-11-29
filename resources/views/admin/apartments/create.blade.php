@@ -24,6 +24,12 @@
 @endsection
 
 @section('content')
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary me-3"><i
+            class="fa-solid fa-arrow-left me-2"></i>Go Back</a>
+    </div>
     <div class="container my-5">
 
         @if ($errors->any())

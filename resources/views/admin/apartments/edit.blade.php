@@ -24,6 +24,19 @@
 
 
 @section('content')
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary me-3"><i
+            class="fa-solid fa-arrow-left me-2"></i>Go Back</a>
+            <div>
+                @if (Auth::id() == $apartment->user_id)
+                    
+                <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn btn-warning">Edit <i
+                    class="fa-solid fa-pencil ms-1"></i></a>
+                @endif
+            </div>
+    </div>
     <div class="container my-5">
 
         @if ($errors->any())
@@ -223,6 +236,8 @@
 
 @section('scripts')
     <script type="text/javascript">
+    let address = document.getElementById('address');
+    let addressVal = address.value;
 
     var options = {
         searchOptions: {
@@ -234,6 +249,9 @@
           key: "k9U6D8g43D9rsDAaXC4vgkIc4Ko56P7d",
           language: "it-IT",
         },
+        labels: {
+            placeholder: addressVal,
+        }
       }
       var ttSearchBox = new tt.plugins.SearchBox(tt.services, options)
       var searchBoxHTML = ttSearchBox.getSearchBoxHTML()
