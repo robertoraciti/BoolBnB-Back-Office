@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+use Illuminate\Support\Facades\Storage;
+
 use App\Models\User;
 use App\Models\Service;
 use App\Models\Message;
@@ -58,5 +61,13 @@ class Apartment extends Model
     public function advertisements()
     {
         return $this->belongsToMany(Advertisement::class);
+    }
+
+    public function getAbstract($chars = 50) {
+        return strlen($this->description) > $chars ? substr($this->description, 0, $chars) . "..." : $this->description;
+    }
+
+    public function getAbsUriImage() {
+        return $this->cover_image ? Storage::url($this->cover_image) : null;
     }
 }
