@@ -25,7 +25,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::orderBy('id', 'desc')->paginate(8);
+        $apartments = Apartment::orderBy('id', 'desc')->where('user_id', '=', Auth::user()->id)->paginate(8);
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -102,9 +102,8 @@ class ApartmentController extends Controller
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
         $data = $request->validated();
-        // $apartment->fill($data);
-
-        // dd($apartment->cover_image);
+        // dd($data);
+        $apartment->fill($data);
 
         if ($request->hasFile('cover_image')) {
             if ($apartment->cover_image) {
