@@ -26,6 +26,7 @@ class ApartmentController extends Controller
             if (!$apartments) {
                 abort(404, 'apartments not found');
             }    
+            // TO DO: Insert image
         // foreach ($apartments as $apartment) {
         //     // $apartment->description = $apartment->getAbstract(200);
         //     // cover image
