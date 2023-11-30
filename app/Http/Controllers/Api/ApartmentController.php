@@ -90,44 +90,46 @@ class ApartmentController extends Controller
 
 
 
-    // public function advancedSearch($lat, $lon, $radius, $rooms, $beds)
-    // {
-    //     $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
-    //         ->with('services:id,name,icon')
-    //         // ->where('address', "LIKE", "%" . $address . "%")
-    //         // ->where('latitude', $latitude)
-    //         // ->where('longitude', $longitude)
-    //         ->where('rooms', '>=', $rooms)
-    //         ->where('beds', '>=', $beds)
-    //         ->get();
-
-    //     if (!$apartments) {
-    //         abort(404, 'Apartment not found');
-    //     }
-
-    //     $filterApartments = [];
-
-    //     foreach ($apartments as $apartment) {
+    public function advancedSearch($lat, $lon, $radius, $rooms, $beds)
+    {
+        $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+            ->with('services:id,name,icon')
+            // ->where('address', "LIKE", "%" . $address . "%")
+            // ->where('latitude', $latitude)
+            // ->where('longitude', $longitude)
+            ->where('rooms', '>=', $rooms)
+            ->where('beds', '>=', $beds)
+            ->get();
 
 
-    //         if ($this->distanceBetweenTwoPoints($lat, $lon, $apartment->latitude, $apartment->longitude) < $radius) {
-    //             array_push($filterApartments, $apartment);
-    //         }
-    //     }
 
-    //     // if there was a cover image  
-    //     // $apartment->cover_image = $apartment->getAbsUriImage();
+        if (!$apartments) {
+            abort(404, 'Apartment not found');
+        }
 
-    //     return response()->json($filterApartments);
+        $filterApartments = [];
 
-    // }
+        foreach ($apartments as $apartment) {
+
+
+            if ($this->distanceBetweenTwoPoints($lat, $lon, $apartment->latitude, $apartment->longitude) < $radius) {
+                array_push($filterApartments, $apartment);
+            }
+        }
+
+        // if there was a cover image  
+        // $apartment->cover_image = $apartment->getAbsUriImage();
+
+        return response()->json($filterApartments);
+
+    }
 
     public function distanceBetweenTwoPoints(
         $latitudeFrom,
         $longitudeFrom,
         $latitudeTo,
         $longitudeTo,
-        $earthRadius = 6371000
+        $earthRadius = 6378
     ) {
         // convert from degrees to radians
         $latFrom = deg2rad($latitudeFrom);
@@ -156,37 +158,37 @@ class ApartmentController extends Controller
     // }
 
     public function apartmentsByFilters(Request $request)
-  {
-    $filters = $request->all();
+    {
+        $filters = $request->all();
 
-    $apartments_query = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
-      ->where('visibility', 1)
-      ->with('services:id,name,icon')
-      ->orderByDesc('id');
+        $apartments_query = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+            ->where('visibility', 1)
+            ->with('services:id,name,icon')
+            ->orderByDesc('id');
 
-    // * TO DO, maybe for cities
-    // if (!empty($filters['activeCategories'])) {
-    //   $apartments_query->whereIn('category_id', $filters['activeCategories']);
-    // }
+        // * TO DO, maybe for cities
+        // if (!empty($filters['activeCategories'])) {
+        //   $apartments_query->whereIn('category_id', $filters['activeCategories']);
+        // }
 
-    if (!empty($filters['activeServices'])) {
-      foreach ($filters['activeServices'] as $service) {
-        $apartments_query->whereHas('services', function ($query) use ($service) {
-          $query->where('service_id', $service);
-        });
-      }
+        if (!empty($filters['activeServices'])) {
+            foreach ($filters['activeServices'] as $service) {
+                $apartments_query->whereHas('services', function ($query) use ($service) {
+                    $query->where('service_id', $service);
+                });
+            }
+        }
+
+        // if (!empty($filters['activeAuthor'])) {
+        //   $apartments_query->where('user_id', $filters['activeAuthor']);
+        // }
+
+        // if (!empty($filters['searchedTitle'])) {
+        //   $apartments_query->where('title', "LIKE", "%".$filters['searchedTitle']."%");
+        // }
+
+        $apartments = $apartments_query->paginate(12);
+
+        return response()->json($apartments);
     }
-
-    // if (!empty($filters['activeAuthor'])) {
-    //   $apartments_query->where('user_id', $filters['activeAuthor']);
-    // }
-
-    // if (!empty($filters['searchedTitle'])) {
-    //   $apartments_query->where('title', "LIKE", "%".$filters['searchedTitle']."%");
-    // }
-
-    $apartments = $apartments_query->paginate(12);
-
-    return response()->json($apartments);
-  }
 }
