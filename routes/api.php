@@ -22,4 +22,8 @@ use App\Http\Controllers\Api\ApartmentController;
 
 Route::apiResource('apartments', ApartmentController::class)->only('index', 'show');
 
-Route::get('/search/{address}', [ApartmentController::class, 'search']);
+// Rotta per ricerca HOMEPAGE
+Route::get('/search/{address}/{lat}/{lon}/{radius}', [ApartmentController::class, 'homepageSearch']);
+
+// Rotta per ricerca avanzata
+Route::get('/search/{lat}/{lon}/{radius}/{rooms}/{beds}', [ApartmentController::class, 'advancedSearch']);
