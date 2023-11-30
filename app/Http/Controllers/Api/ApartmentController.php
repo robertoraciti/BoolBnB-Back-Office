@@ -81,10 +81,6 @@ class ApartmentController extends Controller
         return response()->json($apartment);
     }
 
-    public function getAbsUriImage()
-    {
-        return asset('storage/uploads/apartments/cover_image' . $this->cover_image);
-    }
 
     // public function portfolioByType($type_id)
     // {   
@@ -96,4 +92,39 @@ class ApartmentController extends Controller
 
     //    return response()->json($projects);
     // }
+
+    public function apartmentsByFilters(Request $request)
+  {
+    $filters = $request->all();
+
+    $apartments_query = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+      ->where('visibility', 1)
+      ->with('services:id,name,icon')
+      ->orderByDesc('id');
+
+    // * TO DO, maybe for cities
+    // if (!empty($filters['activeCategories'])) {
+    //   $apartments_query->whereIn('category_id', $filters['activeCategories']);
+    // }
+
+    if (!empty($filters['activeServices'])) {
+      foreach ($filters['activeServices'] as $service) {
+        $apartments_query->whereHas('services', function ($query) use ($service) {
+          $query->where('service_id', $service);
+        });
+      }
+    }
+
+    // if (!empty($filters['activeAuthor'])) {
+    //   $apartments_query->where('user_id', $filters['activeAuthor']);
+    // }
+
+    // if (!empty($filters['searchedTitle'])) {
+    //   $apartments_query->where('title', "LIKE", "%".$filters['searchedTitle']."%");
+    // }
+
+    $apartments = $apartments_query->paginate(12);
+
+    return response()->json($apartments);
+  }
 }
