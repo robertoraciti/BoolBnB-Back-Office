@@ -20,4 +20,6 @@ use App\Http\Controllers\Api\ApartmentController;
 //     return $request->user();
 // });
 
-Route::apiResource('apartments', ApartmentController::class)->only('index','show');
+Route::apiResource('apartments', ApartmentController::class)->only('index', 'show');
+
+Route::get('/search/{address}', [ApartmentController::class, 'search']);
