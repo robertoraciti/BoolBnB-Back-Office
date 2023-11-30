@@ -26,7 +26,12 @@ use App\Http\Controllers\Api\ServiceController;
 Route::apiResource('apartments', ApartmentController::class)->only('index', 'show');
 Route::post('/get-apartments-by-filters', [ApartmentController::class, 'apartmentsByFilters']);
 
-Route::get('/search/{address}', [ApartmentController::class, 'search']);
+// Rotta per ricerca HOMEPAGE
+Route::get('/search/{address}/{lat}/{lon}/{radius}', [ApartmentController::class, 'homepageSearch']);
+
+// Rotta per ricerca avanzata
+Route::get('/search/{lat}/{lon}/{radius}/{rooms}/{beds}', [ApartmentController::class, 'advancedSearch']);
 
 // # SERVICE API
 Route::apiResource('services', ServiceController::class)->only('index');
+

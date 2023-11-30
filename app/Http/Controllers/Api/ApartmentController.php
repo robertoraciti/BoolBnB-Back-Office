@@ -60,25 +60,87 @@ class ApartmentController extends Controller
         return response()->json($apartment);
     }
 
-    public function search($address)
+    public function homepageSearch($address, $lat, $lon, $radius)
     {
-        $apartment = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+        $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
             ->where('address', "LIKE", "%" . $address . "%")
-            // ->where('latitude', $latitude)
-            // ->where('longitude', $longitude)
-            // ->where('rooms', '>=', $rooms)
-            // ->where('beds', '>=', $beds)
             ->get();
 
-        if (!$apartment) {
+        if (!$apartments) {
             abort(404, 'Apartment not found');
+        }
+
+        $filterApartments = [];
+
+        foreach ($apartments as $apartment) {
+
+
+            if ($this->distanceBetweenTwoPoints($lat, $lon, $apartment->latitude, $apartment->longitude) < $radius) {
+                array_push($filterApartments, $apartment);
+            }
         }
 
         // if there was a cover image  
         // $apartment->cover_image = $apartment->getAbsUriImage();
 
-        return response()->json($apartment);
+        return response()->json($filterApartments);
+
+    }
+
+
+
+    // public function advancedSearch($lat, $lon, $radius, $rooms, $beds)
+    // {
+    //     $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+    //         ->with('services:id,name,icon')
+    //         // ->where('address', "LIKE", "%" . $address . "%")
+    //         // ->where('latitude', $latitude)
+    //         // ->where('longitude', $longitude)
+    //         ->where('rooms', '>=', $rooms)
+    //         ->where('beds', '>=', $beds)
+    //         ->get();
+
+    //     if (!$apartments) {
+    //         abort(404, 'Apartment not found');
+    //     }
+
+    //     $filterApartments = [];
+
+    //     foreach ($apartments as $apartment) {
+
+
+    //         if ($this->distanceBetweenTwoPoints($lat, $lon, $apartment->latitude, $apartment->longitude) < $radius) {
+    //             array_push($filterApartments, $apartment);
+    //         }
+    //     }
+
+    //     // if there was a cover image  
+    //     // $apartment->cover_image = $apartment->getAbsUriImage();
+
+    //     return response()->json($filterApartments);
+
+    // }
+
+    public function distanceBetweenTwoPoints(
+        $latitudeFrom,
+        $longitudeFrom,
+        $latitudeTo,
+        $longitudeTo,
+        $earthRadius = 6371000
+    ) {
+        // convert from degrees to radians
+        $latFrom = deg2rad($latitudeFrom);
+        $lonFrom = deg2rad($longitudeFrom);
+        $latTo = deg2rad($latitudeTo);
+        $lonTo = deg2rad($longitudeTo);
+
+        $latDelta = $latTo - $latFrom;
+        $lonDelta = $lonTo - $lonFrom;
+
+        $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
+            cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+        return $angle * $earthRadius;
     }
 
 
