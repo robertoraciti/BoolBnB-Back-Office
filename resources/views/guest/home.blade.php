@@ -9,7 +9,7 @@
      <div class="col-3">
 
        <div class="card" style="width: 18rem;">
-        <img src="{{ $apartment->cover_image ? asset('/storage/'. $apartment->cover_image) : "https://placehold.co/400" }}" class="card-img-top img-fluid">
+          <img src="{{ $apartment->cover_image ? asset('/storage/'. $apartment->cover_image) : "https://placehold.co/400" }}" style="width: 286px; height: 191px" class="img-fluid card-img-top">
          <div class="card-body">
            <h5 class="card-title">{{ $apartment->name }}</h5>
            {{-- <p class="card-text">{{ $apartment->description }}</p> --}}
