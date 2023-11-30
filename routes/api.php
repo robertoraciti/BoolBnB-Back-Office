@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\ApartmentController;
+use App\Http\Controllers\Api\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,17 @@ use App\Http\Controllers\Api\ApartmentController;
 //     return $request->user();
 // });
 
+
+// # APARTMENT API
 Route::apiResource('apartments', ApartmentController::class)->only('index', 'show');
+Route::post('/get-apartments-by-filters', [ApartmentController::class, 'apartmentsByFilters']);
 
 // Rotta per ricerca HOMEPAGE
 Route::get('/search/{address}/{lat}/{lon}/{radius}', [ApartmentController::class, 'homepageSearch']);
 
 // Rotta per ricerca avanzata
 Route::get('/search/{lat}/{lon}/{radius}/{rooms}/{beds}', [ApartmentController::class, 'advancedSearch']);
+
+// # SERVICE API
+Route::apiResource('services', ServiceController::class)->only('index');
+
