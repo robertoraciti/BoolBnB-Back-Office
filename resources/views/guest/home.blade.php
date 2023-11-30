@@ -9,10 +9,10 @@
      <div class="col-3">
 
        <div class="card" style="width: 18rem;">
-         <img src="{{ $apartment->cover_image}}" class="card-img-top img-fluid" alt="...">
+        <img src="{{ $apartment->cover_image ? asset('/storage/'. $apartment->cover_image) : "https://placehold.co/400" }}" class="card-img-top img-fluid">
          <div class="card-body">
            <h5 class="card-title">{{ $apartment->name }}</h5>
-           <p class="card-text">{{ $apartment->description }}</p>
+           {{-- <p class="card-text">{{ $apartment->description }}</p> --}}
          </div>
          <ul class="list-group list-group-flush">
            <li class="list-group-item">Rooms: {{ $apartment->rooms }}</li>
@@ -26,6 +26,7 @@
        </div>
      </div>
      @endforeach
+     {{ $apartments->links('pagination::bootstrap-5') }}
      
    </div>
   </div>
