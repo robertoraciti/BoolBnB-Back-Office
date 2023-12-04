@@ -154,6 +154,9 @@ class ApartmentController extends Controller
 
         $apartment->advertisements()->attach($data['advertisement_id']);
 
-        return redirect()->route('admin.apartments.show', $apartment);
+        $apartment->visibility = 1;
+        $apartment->save();
+
+        return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Promoted with success');
     }
 }
