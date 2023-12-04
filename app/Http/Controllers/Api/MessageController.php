@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Message;
+
 class MessageController extends Controller
 {
     /**
@@ -24,7 +26,16 @@ class MessageController extends Controller
      */
     public function messageReceived(Request $request)
     {
-        //
+        $data = $request->all();
+        
+        $message = new Message();
+        $message->fill($data);
+        // $user = Auth::user()->id;
+        // $apartment->user()->associate($user);
+
+        $message->save();
+
+        return response()->json($message);
     }
 
     /**
