@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,6 @@ Route::get('/search/{lat}/{lon}/{radius}/{rooms}/{beds}', [ApartmentController::
 
 // # SERVICE API
 Route::apiResource('services', ServiceController::class)->only('index');
+
+// # MESSAGE API
+Route::post('/message', [MessageController::class, 'messageReceived']);
