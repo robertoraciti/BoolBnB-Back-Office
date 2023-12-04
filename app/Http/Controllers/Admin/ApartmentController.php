@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 
+use App\Models\Advertisement;
 use App\Models\Apartment;
 use App\Models\Service;
 
@@ -89,6 +90,7 @@ class ApartmentController extends Controller
     {
         $services = Service::all();
         $service_ids = $apartment->services->pluck('id')->toArray();
+
         return view('admin.apartments.edit', compact('apartment', 'services', 'service_ids'));
     }
 
@@ -137,5 +139,21 @@ class ApartmentController extends Controller
         }
         $apartment->delete();
         return redirect()->route('admin.apartments.index')->with('message_type', 'danger')->with('message', 'Deleted with success');
+    }
+
+    public function advertise(Apartment $apartment)
+    {
+        $advertisePlans = Advertisement::all();
+        return view('admin.apartments.advertise', compact('apartment', 'advertisePlans'));
+    }
+
+    public function advCheckout(Request $request, $id)
+    {
+        $data = $request->all();
+        $apartment = Apartment::find($id);
+
+        $apartment->advertisements()->attach($data['advertisement_id']);
+
+        return redirect()->route('admin.apartments.show', $apartment);
     }
 }

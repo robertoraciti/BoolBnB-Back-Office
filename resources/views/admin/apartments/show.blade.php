@@ -17,10 +17,13 @@
                         
                     <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn btn-warning">Edit <i
                         class="fa-solid fa-pencil ms-1"></i></a>
-                        <button type="button" class="btn btn-outline-danger mx-1" data-bs-toggle="modal"
-                        data-bs-target="#deleteModal-{{ $apartment->id }}">
-                        Delete <i class="fa-solid fa-trash text-danger ms-1"></i>
+                        
+                    <button type="button" class="btn btn-outline-danger mx-1" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal-{{ $apartment->id }}">
+                    Delete <i class="fa-solid fa-trash text-danger ms-1"></i>
                     </button>
+
+                    <a href="{{ route('admin.apartments.advertise', $apartment) }}" class="btn btn-dark">Promote</a>
                     @endif
                 </div>
         </div>

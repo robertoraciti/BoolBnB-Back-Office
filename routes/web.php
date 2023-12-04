@@ -28,6 +28,8 @@ Route::middleware(['auth', 'verified'])
 
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
     Route::resource('apartments', ApartmentController::class);
+    Route::get('/apartments/{apartment}/advertise', [ApartmentController::class, 'advertise'])->name('apartments.advertise');
+    Route::post('/apartments/{apartment}/advertise/checkout', [ApartmentController::class, 'advCheckout'])->name('advertisement.checkout');
 
   });
 

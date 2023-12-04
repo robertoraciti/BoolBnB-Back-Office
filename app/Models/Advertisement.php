@@ -11,6 +11,7 @@ class Advertisement extends Model
     use HasFactory;
 
 
+
     public function advertisements()
     {
         return $this->belongsToMany(Apartment::class);
