@@ -46,7 +46,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" maxlength="100" autocomplete="name" autofocus data-parsley-pattern="[a-zA-Z]+$" data-parsley-trigger="keyup">
+                                        value="{{ old('name') }}" maxlength="100" autocomplete="name" autofocus data-parsley-trigger="keyup">
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -63,7 +63,7 @@
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{ old('surname') }}" maxlength="100" autocomplete="surname" autofocus data-parsley-pattern="[a-zA-Z]+$" data-parsley-trigger="keyup">
+                                        value="{{ old('surname') }}" maxlength="100" autocomplete="surname" autofocus data-parsley-trigger="keyup">
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
