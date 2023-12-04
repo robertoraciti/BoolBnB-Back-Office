@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::get('/search/{lat}/{lon}/{radius}', [ApartmentController::class, 'homepag
 
 // Rotta per ricerca avanzata
 Route::get('/search/{lat}/{lon}/{radius}/{rooms}/{beds}', [ApartmentController::class, 'advancedSearch']);
+
+// rotta per User
+Route::apiResource('users', UserController::class)->only('index', 'show', );
+Route::get('get-user/{id}', [UserController::class, 'getUser']);
 
 // # SERVICE API
 Route::apiResource('services', ServiceController::class)->only('index');
