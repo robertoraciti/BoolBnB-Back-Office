@@ -9,6 +9,7 @@ use App\Models\Advertisement;
 use App\Models\Apartment;
 use App\Models\Service;
 
+use DateInterval;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Arr;
@@ -149,12 +150,35 @@ class ApartmentController extends Controller
 
     public function advCheckout(Request $request, $id)
     {
+        $advertisement = Advertisement::all();
         $data = $request->all();
         $apartment = Apartment::find($id);
 
         $apartment->advertisements()->attach($data['advertisement_id']);
 
-        $apartment->visibility = 1;
+        $now = date_create();
+
+        if ($data['advertisement_id'] == 1) {
+
+            date_add($now, date_interval_create_from_date_string("24 hours"));
+            $expiration = date_format($now, 'Y-m-d H:i:s');
+
+        } elseif ($data['advertisement_id'] == 2) {
+            date_add($now, date_interval_create_from_date_string("72 hours"));
+            $expiration = date_format($now, 'Y-m-d H:i:s');
+        } else {
+            date_add($now, date_interval_create_from_date_string("144 hours"));
+            $expiration = date_format($now, 'Y-m-d H:i:s');
+        }
+
+        if ($now > $expiration) {
+            $apartment->visibility = 0;
+        } else {
+
+            $apartment->visibility = 1;
+        }
+
+        dd($expiration);
         $apartment->save();
 
         return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Promoted with success');
