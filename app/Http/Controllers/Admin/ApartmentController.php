@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Advertisement;
 use App\Models\Apartment;
 use App\Models\Service;
+use App\Models\Message;
 
 use Illuminate\Http\Request;
 
@@ -158,5 +159,14 @@ class ApartmentController extends Controller
         $apartment->save();
 
         return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Promoted with success');
+    }
+
+    public function messages(Apartment $apartment)
+    {
+        $messages = Message::select('apartment_id','name','email','text','created_at')
+        ->where('apartment_id', $apartment->id)
+        ->paginate(6);
+        
+        return view('admin.apartments.messages', compact('apartment','messages'));
     }
 }
