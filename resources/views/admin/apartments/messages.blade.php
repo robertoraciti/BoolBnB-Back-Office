@@ -10,7 +10,7 @@
 <div class="container">
 
     <div class="mt-4">
-        <h2>Received messages for {{ $apartment->name }}</h2>
+        <h2>You have a total of <span class="badge text-bg-secondary">{{ $count }}</span> received messages for {{ $apartment->name }}</h2>
         {{ $messages->links('pagination::bootstrap-5') }}
     </div>
 

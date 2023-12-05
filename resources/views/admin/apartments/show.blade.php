@@ -18,8 +18,8 @@
                     <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn btn-warning">Edit <i
                         class="fa-solid fa-pencil ms-1"></i></a>
 
-                        <a href="{{ route('admin.apartments.messages', $apartment) }}" class="btn btn-warning">Messages <i
-                            class="fa-solid fa-pencil ms-1"></i></a>
+                        <a href="{{ route('admin.apartments.messages', $apartment) }}" class="btn btn-primary">Messages <span class="badge text-bg-secondary">{{ $count }}</span> <i
+                            class="fa-solid fa-envelope ms-1"></i></a>
                         
                     <button type="button" class="btn btn-outline-danger mx-1" data-bs-toggle="modal"
                     data-bs-target="#deleteModal-{{ $apartment->id }}">
