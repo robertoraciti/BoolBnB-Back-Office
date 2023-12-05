@@ -9,7 +9,13 @@ class View extends Model
 {
     use HasFactory;
 
-    public function apartment(){
+    protected $fillable = [
+        'date',
+        'ip_address'
+    ];
+
+    public function apartment()
+    {
 
         return $this->BelongsTo(Apartment::class);
     }

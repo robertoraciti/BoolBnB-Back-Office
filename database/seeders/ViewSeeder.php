@@ -16,7 +16,7 @@ class ViewSeeder extends Seeder
     public function run()
     {
         $view = new View();
-        $view->adv_date = '2023-10-22';
+        $view->date = '2023-10-22';
         $view->ip_address = '192.168.123.132';
         $view->save();
     }
