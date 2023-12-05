@@ -8,10 +8,12 @@ use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Advertisement;
 use App\Models\Apartment;
 use App\Models\Service;
+use App\Models\Message;
 
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,7 +79,10 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+        $count = DB::table('messages')
+            ->where('apartment_id',$apartment->id)
+            ->count();
+        return view('admin.apartments.show', compact('apartment','count'));
     }
 
     /**
@@ -158,5 +163,19 @@ class ApartmentController extends Controller
         $apartment->save();
 
         return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Promoted with success');
+    }
+
+    public function messages(Apartment $apartment)
+    {
+        $messages = Message::select('apartment_id','name','email','text','created_at')
+            ->where('apartment_id', $apartment->id)
+            ->orderBy('id','desc')
+            ->paginate(6);
+
+        $count = DB::table('messages')
+            ->where('apartment_id',$apartment->id)
+            ->count();
+        
+        return view('admin.apartments.messages', compact('apartment','messages','count'));
     }
 }
