@@ -16,7 +16,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('advertisement_id')->constrained()->cascadeOnDelete();
             $table->foreignId('apartment_id')->constrained()->cascadeOnDelete();
+            $table->dateTime('start_date')->nullable();
             $table->dateTime('expiration_date')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -23,6 +23,7 @@
                             <th scope="col" class="text-center">Bathrooms</th>
                             <th scope="col" class="text-center">Mq</th>
                             <th scope="col" class="text-center">Price</th>
+                            <th scope="col" class="text-center">Promoted</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -38,6 +39,11 @@
                             <td class="text-center">{{ $apartment->bathrooms }}</td>
                             <td class="text-center">{{ $apartment->mq }}</td>
                             <td class="text-center">€ {{ $apartment->price }}</td>
+                            <td>
+                                <div class="form-check form-switch ">
+                                    <input class="form-check-input ms-1" type="checkbox" role="switch" disabled id=" @if($apartment->visibility == 1) ? 'flexSwitchCheckChecked' : 'flexSwitchCheckDefault' @endif " @if($apartment->visibility == 1) ? checked :  @endif>
+                                </div>
+                            </td>
                             <td>
                                 <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
                                     class="fa-solid fa-eye"></i></a>

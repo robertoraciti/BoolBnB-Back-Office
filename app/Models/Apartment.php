@@ -45,14 +45,16 @@ class Apartment extends Model
     {
         return strlen($this->address) > $chars ? substr($this->address, 0, $chars) . " ..." : $this->address;
     }
-    
-    public function messages(){
+
+    public function messages()
+    {
 
         return $this->hasMany(Message::class);
 
     }
 
-    public function views(){
+    public function views()
+    {
 
         return $this->hasMany(View::class);
 
@@ -63,11 +65,13 @@ class Apartment extends Model
         return $this->belongsToMany(Advertisement::class);
     }
 
-    public function getAbstract($chars = 50) {
+    public function getAbstract($chars = 50)
+    {
         return strlen($this->description) > $chars ? substr($this->description, 0, $chars) . "..." : $this->description;
     }
 
-    public function getAbsUriImage() {
+    public function getAbsUriImage()
+    {
         return $this->cover_image ? Storage::url($this->cover_image) : null;
     }
 }

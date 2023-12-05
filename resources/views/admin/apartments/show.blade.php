@@ -50,7 +50,7 @@
 
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <p>
                     <strong>Services:</strong>
                     @forelse ($apartment->services as $service)
@@ -61,6 +61,21 @@
 
                     @empty
                         <span>No Services Available</span>
+                    @endforelse
+                </p>
+
+            </div>
+            <div class="col-6">
+                <p>
+                    <strong>Advertisements:</strong>
+                    @forelse ($apartment->advertisements as $advertisement)
+                        <br>
+                        <p>Active promotion: {{ $advertisement->label ?? '' }} </p>
+                        <p>Your promotion will expire on {{$advertisement->pivot->expiration_date}}</p>
+
+
+                    @empty
+                        <span>Not promoted</span>
                     @endforelse
                 </p>
 

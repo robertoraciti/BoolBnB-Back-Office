@@ -154,15 +154,13 @@ class ApartmentController extends Controller
         $data = $request->all();
         $apartment = Apartment::find($id);
 
-        $apartment->advertisements()->attach($data['advertisement_id']);
-
         $now = date_create();
+        $start_date = date_create();
 
         if ($data['advertisement_id'] == 1) {
 
             date_add($now, date_interval_create_from_date_string("24 hours"));
             $expiration = date_format($now, 'Y-m-d H:i:s');
-
         } elseif ($data['advertisement_id'] == 2) {
             date_add($now, date_interval_create_from_date_string("72 hours"));
             $expiration = date_format($now, 'Y-m-d H:i:s');
@@ -170,15 +168,18 @@ class ApartmentController extends Controller
             date_add($now, date_interval_create_from_date_string("144 hours"));
             $expiration = date_format($now, 'Y-m-d H:i:s');
         }
+        // dd($formatNow, $expiration);
+        $apartment->visibility = 1;
 
-        if ($now > $expiration) {
-            $apartment->visibility = 0;
+        if ($apartment->advertisements()->exists(['apartment_id' => $apartment->id])) {
+            abort('403', 'Promozione già attiva su questo appartamento');
         } else {
 
-            $apartment->visibility = 1;
+            $formatStartDate = date_format($start_date, 'Y-m-d H:i:s');
+            $apartment->advertisements()->attach($data['advertisement_id'], ['start_date' => $formatStartDate, 'expiration_date' => $expiration]);
         }
 
-        dd($expiration);
+
         $apartment->save();
 
         return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Promoted with success');
