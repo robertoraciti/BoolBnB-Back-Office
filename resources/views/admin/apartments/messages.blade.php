@@ -10,41 +10,29 @@
 <div class="container">
 
     <div class="mt-4">
-        <h2>Messages for {{ $apartment->name }}</h2>
+        <h2>Received messages for {{ $apartment->name }}</h2>
+        {{ $messages->links('pagination::bootstrap-5') }}
     </div>
 
-    <table class="table mt-2">
-        <thead>
-            <tr>
-                <th scope="col">User</th>
-                <th scope="col">Email</th>
-                <th scope="col">Sent</th>
-                <th scope="col">Text</th>
-                {{-- <th scope="col">Actions</th> --}}
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($messages as $message)
-            <tr>
-                <td>{{ $message->name }}</td>
-                <td>{{ $message->email }}</td>
-                <td>{{ $message->created_at }}</td>
-                <td>{{ $message->text }}</td>
-                {{-- <td>
-                    <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
-                        class="fa-solid fa-eye"></i></a>
-                        <a href= " {{ route('admin.apartments.edit', $apartment) }}"> <i
-                            class="fa-solid fa-pencil mx-1 "></i> </a>
-                            <a href= "#" data-bs-toggle="modal"
-                            data-bs-target="#deleteModal-{{ $apartment->id }}"> <i
-                            class="fa-solid fa-trash text-danger"></i> </a>
-                        </td> --}}
-                    </tr>
+    <div class="mt-4 container card-container">
+
+        @foreach ($messages as $message)
+        
+        <div class="card">
+            {{-- <img src="..." class="card-img-top" alt="..."> --}}
+            <div class="card-body">
+                <h5 class="card-title">User: {{ $message->name }}</h5>
+                <h5 class="card-title">Email: {{ $message->email }}</h5>
+                <h5 class="card-title">Sent: {{ $message->created_at }}</h5>
+                <h5 class="card-title">Message: </h5>
+                <p class="card-text">{{ $message->text }}</p>
+                
+            </div>
+        </div>
+        @endforeach
+    </div>
+    {{ $messages->links('pagination::bootstrap-5') }}
                     
-                @endforeach
-                {{ $messages->links('pagination::bootstrap-5') }}
-                    
-        </tbody>
-    </table>
+      
 </div>
 @endsection
