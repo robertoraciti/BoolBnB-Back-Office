@@ -6,7 +6,7 @@
     
     {{ $apartments->links('pagination::bootstrap-5') }}
     @foreach ($apartments as $apartment)
-     <div class="col-3">
+     <div class="d-flex justify-content-center col">
 
        <div class="card" style="width: 18rem;">
           <img src="{{ $apartment->cover_image ? asset('/storage/'. $apartment->cover_image) : "https://placehold.co/400" }}" style="width: 286px; height: 191px" class="img-fluid card-img-top">
