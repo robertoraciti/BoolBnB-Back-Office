@@ -38,3 +38,6 @@ Route::apiResource('services', ServiceController::class)->only('index');
 
 // # MESSAGE API
 Route::post('/message', [MessageController::class, 'messageReceived']);
+
+// APARTMENT VIEW
+Route::post('/apartment/{id}', [ApartmentController::class, 'apartmentView']);
