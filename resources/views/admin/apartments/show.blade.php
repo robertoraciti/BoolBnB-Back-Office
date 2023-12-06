@@ -17,6 +17,9 @@
                         
                     <a href="{{ route('admin.apartments.edit', $apartment) }}" class="btn btn-warning">Edit <i
                         class="fa-solid fa-pencil ms-1"></i></a>
+
+                        <a href="{{ route('admin.apartments.messages', $apartment) }}" class="btn btn-primary">Messages <span class="badge text-bg-secondary">{{ $count }}</span> <i
+                            class="fa-solid fa-envelope ms-1"></i></a>
                         
                     <button type="button" class="btn btn-outline-danger mx-1" data-bs-toggle="modal"
                     data-bs-target="#deleteModal-{{ $apartment->id }}">
@@ -66,7 +69,7 @@
 {{-- 
 
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <p>
                     <strong>Services:</strong>
                     @forelse ($apartment->services as $service)
@@ -81,7 +84,26 @@
                 </p>
 
             </div>
+
         </div> --}}
+
+            <div class="col-6">
+                <p>
+                    <strong>Advertisements:</strong>
+                    @forelse ($apartment->advertisements as $advertisement)
+                        <br>
+                        <p>Active promotion: {{ $advertisement->label ?? '' }} </p>
+                        <p>Your promotion will expire on {{$advertisement->pivot->expiration_date}}</p>
+
+
+                    @empty
+                        <span>Not promoted</span>
+                    @endforelse
+                </p>
+
+            </div>
+        </div>
+
     @endsection
 
     @section('modal')

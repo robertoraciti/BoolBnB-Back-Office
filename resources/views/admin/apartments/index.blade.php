@@ -23,6 +23,7 @@
                             <th scope="col" class="text-center d-none d-md-table-cell">Bathrooms</th>
                             <th scope="col" class="text-center d-none d-md-table-cell">Mq</th>
                             <th scope="col" class="text-center d-none d-md-table-cell">Price</th>
+                            <th scope="col" class="text-center">Promoted</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -39,21 +40,26 @@
                             <td class="text-center d-none d-md-table-cell">{{ $apartment->mq }}</td>
                             <td class="text-center d-none d-md-table-cell">€ {{ $apartment->price }}</td>
                             <td class="text-center">
+                                <div class="form-check form-switch ">
+                                    <input class="form-check-input ms-1" type="checkbox" role="switch" disabled id=" @if($apartment->visibility == 1) ? 'flexSwitchCheckChecked' : 'flexSwitchCheckDefault' @endif " @if($apartment->visibility == 1) ? checked :  @endif>
+                                </div>
+                            </td>
+                            <td>
                                 <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
                                     class="fa-solid fa-eye d-block d-md-inline m-1"></i></a>
-                                    <a href= " {{ route('admin.apartments.edit', $apartment) }}"> <i
+                                <a href= " {{ route('admin.apartments.edit', $apartment) }}"> <i
                                         class="fa-solid fa-pencil mx-1 d-block  d-md-inline  m-1"></i> </a>
                                         <a href= "#" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal-{{ $apartment->id }}"> <i
                                         class="fa-solid fa-trash text-danger d-block  d-md-inline  m-1"></i> </a>
-                                    </td>
-                                </tr>
-                                @endif
-                                @endforeach
-                                {{ $apartments->links('pagination::bootstrap-5') }}
+                            </td>
+                        </tr>
+                        @endif
+                        @endforeach
+                        {{ $apartments->links('pagination::bootstrap-5') }}
                                     
-                                </tbody>
-                            </table>
+                    </tbody>
+                </table>
         </div>
 
     </section>

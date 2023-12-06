@@ -8,10 +8,13 @@ use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Advertisement;
 use App\Models\Apartment;
 use App\Models\Service;
+use App\Models\Message;
 
+use DateInterval;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,7 +80,10 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('admin.apartments.show', compact('apartment'));
+        $count = DB::table('messages')
+            ->where('apartment_id',$apartment->id)
+            ->count();
+        return view('admin.apartments.show', compact('apartment','count'));
     }
 
     /**
@@ -149,14 +155,52 @@ class ApartmentController extends Controller
 
     public function advCheckout(Request $request, $id)
     {
+        $advertisement = Advertisement::all();
         $data = $request->all();
         $apartment = Apartment::find($id);
 
-        $apartment->advertisements()->attach($data['advertisement_id']);
+        $now = date_create();
+        $start_date = date_create();
 
+        if ($data['advertisement_id'] == 1) {
+
+            date_add($now, date_interval_create_from_date_string("24 hours"));
+            $expiration = date_format($now, 'Y-m-d H:i:s');
+        } elseif ($data['advertisement_id'] == 2) {
+            date_add($now, date_interval_create_from_date_string("72 hours"));
+            $expiration = date_format($now, 'Y-m-d H:i:s');
+        } else {
+            date_add($now, date_interval_create_from_date_string("144 hours"));
+            $expiration = date_format($now, 'Y-m-d H:i:s');
+        }
+        // dd($formatNow, $expiration);
         $apartment->visibility = 1;
+
+        if ($apartment->advertisements()->exists(['apartment_id' => $apartment->id])) {
+            abort('403', 'Promozione già attiva su questo appartamento');
+        } else {
+
+            $formatStartDate = date_format($start_date, 'Y-m-d H:i:s');
+            $apartment->advertisements()->attach($data['advertisement_id'], ['start_date' => $formatStartDate, 'expiration_date' => $expiration]);
+        }
+
+
         $apartment->save();
 
         return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Promoted with success');
+    }
+
+    public function messages(Apartment $apartment)
+    {
+        $messages = Message::select('apartment_id','name','email','text','created_at')
+            ->where('apartment_id', $apartment->id)
+            ->orderBy('id','desc')
+            ->paginate(6);
+
+        $count = DB::table('messages')
+            ->where('apartment_id',$apartment->id)
+            ->count();
+        
+        return view('admin.apartments.messages', compact('apartment','messages','count'));
     }
 }
