@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\View;
 use Illuminate\Http\Request;
 
 use App\Models\Apartment;
@@ -190,5 +191,26 @@ class ApartmentController extends Controller
         $apartments = $apartments_query->paginate(12);
 
         return response()->json($apartments);
+    }
+
+    public function apartmentView(Request $request, $id)
+    {
+        $apartment = Apartment::findOrFail($id);
+        $userIP = $request->ip();
+
+        $view = View::where('apartment_id', $apartment->id)
+            ->where('ip_address', $userIP)
+            ->first();
+
+        if (!$view) {
+            $view = new View();
+            $view->apartment_id = $apartment->id;
+            $view->ip = $userIP;
+            $view->save();
+            $apartment->views += 1;
+            $apartment->save();
+        }
+
+        return response()->json($apartment);
     }
 }
