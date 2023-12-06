@@ -198,9 +198,9 @@
 
             <label class="form-label">Services *</label>
             <div class="form-check container @error('services') is-invalid  invalid-input p-2 @enderror">
-                <div class="row row-cols-4">
+                <div class="row ">
                     @foreach ($services as $service)
-                        <div class="col">
+                        <div class="col-sm-6 col-md-4 ">
                             <input class="form-check-control" type="checkbox" value="{{ $service->id }}"
                                 id="service-{{ $service->id }}" name="services[]"
                                 @if (in_array($service->id, old('services', $service_ids) ?? [])) checked @endif>

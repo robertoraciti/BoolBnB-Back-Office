@@ -11,18 +11,18 @@
     <section class="container mt-5">
         <a class="btn btn-primary" href="{{ route('admin.apartments.create') }}"><i class="fa-solid fa-plus me-2"></i>Add new
             apartment </a>
-            <div class="my-5">
+            <div class="my-5 table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Address</th>
-                            <th scope="col" class="text-center">Rooms</th>
-                            <th scope="col" class="text-center">Beds</th>
-                            <th scope="col" class="text-center">Bathrooms</th>
-                            <th scope="col" class="text-center">Mq</th>
-                            <th scope="col" class="text-center">Price</th>
+                            <th scope="col" class="text-center d-none d-md-table-cell d-flex align-items-center">Rooms</th>
+                            <th scope="col" class="text-center d-none d-md-table-cell">Beds</th>
+                            <th scope="col" class="text-center d-none d-md-table-cell">Bathrooms</th>
+                            <th scope="col" class="text-center d-none d-md-table-cell">Mq</th>
+                            <th scope="col" class="text-center d-none d-md-table-cell">Price</th>
                             <th scope="col" class="text-center">Promoted</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -34,29 +34,29 @@
                             <td>{{ $apartment->id }}</td>
                             <td>{{ $apartment->name }}</td>
                             <td>{!! $apartment->getAddress() !!}</td>
-                            <td class="text-center">{{ $apartment->rooms }}</td>
-                            <td class="text-center">{{ $apartment->beds }}</td>
-                            <td class="text-center">{{ $apartment->bathrooms }}</td>
-                            <td class="text-center">{{ $apartment->mq }}</td>
-                            <td class="text-center">€ {{ $apartment->price }}</td>
-                            <td>
+                            <td class="text-center d-none d-md-table-cell">{{ $apartment->rooms }}</td>
+                            <td class="text-center d-none d-md-table-cell">{{ $apartment->beds }}</td>
+                            <td class="text-center d-none d-md-table-cell">{{ $apartment->bathrooms }}</td>
+                            <td class="text-center d-none d-md-table-cell">{{ $apartment->mq }}</td>
+                            <td class="text-center d-none d-md-table-cell">€ {{ $apartment->price }}</td>
+                            <td class="text-center">
                                 <div class="form-check form-switch ">
                                     <input class="form-check-input ms-1" type="checkbox" role="switch" disabled id=" @if($apartment->visibility == 1) ? 'flexSwitchCheckChecked' : 'flexSwitchCheckDefault' @endif " @if($apartment->visibility == 1) ? checked :  @endif>
                                 </div>
                             </td>
                             <td>
                                 <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
-                                    class="fa-solid fa-eye"></i></a>
-                                    <a href= " {{ route('admin.apartments.edit', $apartment) }}"> <i
-                                        class="fa-solid fa-pencil mx-1 "></i> </a>
+                                    class="fa-solid fa-eye d-block d-md-inline m-1"></i></a>
+                                <a href= " {{ route('admin.apartments.edit', $apartment) }}"> <i
+                                        class="fa-solid fa-pencil mx-1 d-block  d-md-inline  m-1"></i> </a>
                                         <a href= "#" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal-{{ $apartment->id }}"> <i
-                                        class="fa-solid fa-trash text-danger"></i> </a>
-                                    </td>
-                                </tr>
-                                @endif
-                                @endforeach
-                                {{ $apartments->links('pagination::bootstrap-5') }}
+                                        class="fa-solid fa-trash text-danger d-block  d-md-inline  m-1"></i> </a>
+                            </td>
+                        </tr>
+                        @endif
+                        @endforeach
+                        {{ $apartments->links('pagination::bootstrap-5') }}
                                     
                     </tbody>
                 </table>
