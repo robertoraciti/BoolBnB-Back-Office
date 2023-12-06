@@ -205,7 +205,7 @@ class ApartmentController extends Controller
         if (!$view) {
             $view = new View();
             $view->apartment_id = $apartment->id;
-            $view->ip = $userIP;
+            $view->ip_address = $userIP;
             $view->save();
             $apartment->views += 1;
             $apartment->save();
