@@ -25,7 +25,6 @@ return new class extends Migration {
             $table->unsignedInteger('bathrooms');
             $table->unsignedInteger('mq');
             $table->decimal('price', 6, 2)->unsigned();
-            $table->unsignedInteger('views')->nullable();
             $table->string('cover_image');
             $table->timestamps();
         });

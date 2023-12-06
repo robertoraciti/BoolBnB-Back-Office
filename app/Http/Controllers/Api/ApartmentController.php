@@ -207,8 +207,8 @@ class ApartmentController extends Controller
             $view->apartment_id = $apartment->id;
             $view->ip_address = $userIP;
             $view->save();
-            $apartment->views += 1;
-            $apartment->save();
+            // $apartment->views += 1;
+            // $apartment->save();
         }
 
         return response()->json($apartment);
