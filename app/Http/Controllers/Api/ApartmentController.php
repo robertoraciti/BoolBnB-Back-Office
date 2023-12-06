@@ -169,12 +169,12 @@ class ApartmentController extends Controller
             ->with('services:id,name,icon')
             ->orderByDesc('id');
 
-            
-            // foreach ($apartments_query as $apartment) {
-            //     $apartment->description = $apartment->getAbstract(200);
-            //     // cover image
-            //     $apartment->cover_image = $apartment->getAbsUriImage();
-            // }
+
+        // foreach ($apartments_query as $apartment) {
+        //     $apartment->description = $apartment->getAbstract(200);
+        //     // cover image
+        //     $apartment->cover_image = $apartment->getAbsUriImage();
+        // }
 
         if (!empty($filters['activeApartmentServices'])) {
             foreach ($filters['activeApartmentServices'] as $service) {
@@ -185,12 +185,12 @@ class ApartmentController extends Controller
         }
 
         if (!empty($filters['activeRooms'])) {
-          $apartments_query->where('rooms', '>=', $filters['activeRooms']);
+            $apartments_query->where('rooms', '>=', $filters['activeRooms']);
         }
 
         if (!empty($filters['activeBeds'])) {
             $apartments_query->where('beds', '>=', $filters['activeBeds']);
-          }
+        }
 
         $apartments = $apartments_query->paginate(30);
 
@@ -199,7 +199,7 @@ class ApartmentController extends Controller
         foreach ($apartments as $apartment) {
 
 
-            if ($this->distanceBetweenTwoPoints($filters['lat'], $filters['lng'], $apartment->latitude, $apartment->longitude) < 50) {
+            if ($this->distanceBetweenTwoPoints($filters['activeLat'], $filters['activeLng'], $apartment->latitude, $apartment->longitude) < 50) {
                 array_push($filterApartments, $apartment);
             }
         }
