@@ -28,27 +28,43 @@
                 </div>
         </div>
         <h3 class="text-info my-5 text-center"> {{ $apartment->name }} </h3>
-        <div class="row">
+        <div class="row ">
             {{-- ADD COVER_IMAGE --}}
-            <div class="col-4">
+            <div class="col-lg-4 col-sm-12">
                 <img src="{{ $apartment->cover_image ? asset('/storage/'. $apartment->cover_image) : "https://placehold.co/400" }}" class="img-fluid" id="cover_image_preview">
             </div>
-            <div class="col-8 row">
+            <div class="col-lg-8 col-sm-12">
 
-                <div class="col-6"> <b>Address:</b> {{ $apartment->address }} </div>
-                <div class="col-6"> <b>Host:</b> {{ $apartment->user->name }} {{ $apartment->user->surname }} </div>
-                <div class="col-6"> <b>Latitude:</b> {{ $apartment->latitude }} </div>
-                <div class="col-6"> <b>Longitude:</b> {{ $apartment->longitude }} </div>
-                <div class="col-6"> <b>Rooms:</b> {{ $apartment->rooms }} </div>
-                <div class="col-6"> <b>Beds:</b> {{ $apartment->beds }} </div>
-                <div class="col-6"> <b>Bathrooms:</b> {{ $apartment->bathrooms }} </div>
-                <div class="col-6"> <b>Mq:</b> {{ $apartment->mq }} </div>
-                <div class="col-6"> <b>Price:</b> €{{ $apartment->price }} </div>
-                <div class="col-6"> <b>Visibility:</b> {{ $apartment->visibility }} </div>
-                <div class="col-12"> <b>Description:</b> <br> {{ $apartment->description }} </div>
+                <div class="col-lg-6 col-sm-12 my-2"> <b>Address:</b> {{ $apartment->address }} </div>
+                <div class="col-lg-6 col-sm-12 my-2"> <b>Host:</b> {{ $apartment->user->name }} {{ $apartment->user->surname }} </div>
+                <div class="col-lg-6 col-sm-12 my-2 d-none"> <b>Latitude:</b> {{ $apartment->latitude }} </div>
+                <div class="col-lg-6 col-sm-12 my-2 d-none"> <b>Longitude:</b> {{ $apartment->longitude }} </div>
+                <div class="col-lg-6 col-sm-12 my-2"> <b>Rooms:</b> {{ $apartment->rooms }} </div>
+                <div class="col-lg-6 col-sm-12 my-2"> <b>Beds:</b> {{ $apartment->beds }} </div>
+                <div class="col-lg-6 col-sm-12 my-2"> <b>Bathrooms:</b> {{ $apartment->bathrooms }} </div>
+                <div class="col-lg-6 col-sm-12 my-2"> <b>Mq:</b> {{ $apartment->mq }} </div>
+                <div class="col-lg-6 col-sm-12 my-2"> <b>Price:</b> €{{ $apartment->price }} </div>
+                <div class="col-lg-6 col-sm-12 my-2"> <b>Visibility:</b> {{ $apartment->visibility }} </div>
             </div>
+            <div class="col-12 g-3"><b>Description:</b> <p> {{ $apartment->description }} </p></div>
 
         </div>
+
+        <div class="row ">
+            <label class="form-label g-3">Services *</label>
+
+            @forelse ($apartment->services as $service)
+            <div class="col-sm-6 col-md-4">
+                <span> {{ $service->name ?? '' }} </span>
+                <i class="fa-solid fa-{{ $service->icon }} ms-1"></i>
+
+                </div>
+            @endforeach
+        </div>
+
+
+{{-- 
+
         <div class="row">
             <div class="col">
                 <p>
@@ -65,7 +81,7 @@
                 </p>
 
             </div>
-        </div>
+        </div> --}}
     @endsection
 
     @section('modal')
