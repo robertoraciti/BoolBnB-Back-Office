@@ -54,39 +54,23 @@
         </div>
 
         <div class="row ">
-            <label class="form-label g-3">Services *</label>
+            <label class="form-label g-3">Services:</label>
 
             @forelse ($apartment->services as $service)
             <div class="col-sm-6 col-md-4">
                 <span> {{ $service->name ?? '' }} </span>
                 <i class="fa-solid fa-{{ $service->icon }} ms-1"></i>
 
-                </div>
-            @endforeach
+            </div>
+            @empty
+                <span>No Services Available</span>    
+            @endforelse
         </div>
 
 
-{{-- 
+
 
         <div class="row">
-            <div class="col-6">
-                <p>
-                    <strong>Services:</strong>
-                    @forelse ($apartment->services as $service)
-                        <br>
-                        <span> {{ $service->name ?? '' }} </span>
-                        <i class="fa-solid fa-{{ $service->icon }} ms-1"></i>
-
-
-                    @empty
-                        <span>No Services Available</span>
-                    @endforelse
-                </p>
-
-            </div>
-
-        </div> --}}
-
             <div class="col-6">
                 <p>
                     <strong>Advertisements:</strong>
