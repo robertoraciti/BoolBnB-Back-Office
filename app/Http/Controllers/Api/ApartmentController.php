@@ -194,7 +194,17 @@ class ApartmentController extends Controller
 
         $apartments = $apartments_query->paginate(30);
 
-        return response()->json($apartments);
+        $filterApartments = [];
+
+        foreach ($apartments as $apartment) {
+
+
+            if ($this->distanceBetweenTwoPoints($filters['lat'], $filters['lng'], $apartment->latitude, $apartment->longitude) < 50) {
+                array_push($filterApartments, $apartment);
+            }
+        }
+
+        return response()->json($filterApartments);
     }
 
     public function apartmentView(Request $request, $id)
