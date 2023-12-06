@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Apartment;
 use App\Models\Service;
+
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -167,13 +169,23 @@ class ApartmentController extends Controller
             ->with('services:id,name,icon')
             ->orderByDesc('id');
 
+            
+            // foreach ($apartments_query as $apartment) {
+            //     $apartment->description = $apartment->getAbstract(200);
+            //     // cover image
+            //     $apartment->cover_image = $apartment->getAbsUriImage();
+            // }
+            
+    
+        // $apartments_query->save();    
+
         // * TO DO, maybe for cities
         // if (!empty($filters['activeCategories'])) {
         //   $apartments_query->whereIn('category_id', $filters['activeCategories']);
         // }
 
-        if (!empty($filters['activeServices'])) {
-            foreach ($filters['activeServices'] as $service) {
+        if (!empty($filters['activeApartmentServices'])) {
+            foreach ($filters['activeApartmentServices'] as $service) {
                 $apartments_query->whereHas('services', function ($query) use ($service) {
                     $query->where('service_id', $service);
                 });
@@ -188,7 +200,7 @@ class ApartmentController extends Controller
         //   $apartments_query->where('title', "LIKE", "%".$filters['searchedTitle']."%");
         // }
 
-        $apartments = $apartments_query->paginate(12);
+        $apartments = $apartments_query->paginate(30);
 
         return response()->json($apartments);
     }
