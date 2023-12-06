@@ -175,14 +175,6 @@ class ApartmentController extends Controller
             //     // cover image
             //     $apartment->cover_image = $apartment->getAbsUriImage();
             // }
-            
-    
-        // $apartments_query->save();    
-
-        // * TO DO, maybe for cities
-        // if (!empty($filters['activeCategories'])) {
-        //   $apartments_query->whereIn('category_id', $filters['activeCategories']);
-        // }
 
         if (!empty($filters['activeApartmentServices'])) {
             foreach ($filters['activeApartmentServices'] as $service) {
@@ -192,13 +184,13 @@ class ApartmentController extends Controller
             }
         }
 
-        // if (!empty($filters['activeAuthor'])) {
-        //   $apartments_query->where('user_id', $filters['activeAuthor']);
-        // }
+        if (!empty($filters['activeRooms'])) {
+          $apartments_query->where('rooms', '>=', $filters['activeRooms']);
+        }
 
-        // if (!empty($filters['searchedTitle'])) {
-        //   $apartments_query->where('title', "LIKE", "%".$filters['searchedTitle']."%");
-        // }
+        if (!empty($filters['activeBeds'])) {
+            $apartments_query->where('beds', '>=', $filters['activeBeds']);
+          }
 
         $apartments = $apartments_query->paginate(30);
 
