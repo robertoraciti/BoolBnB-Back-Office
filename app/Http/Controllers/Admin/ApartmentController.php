@@ -30,6 +30,30 @@ class ApartmentController extends Controller
     public function index()
     {
         $apartments = Apartment::orderBy('id', 'desc')->where('user_id', '=', Auth::user()->id)->paginate(8);
+        foreach ($apartments as $apartment) {
+
+            $advertisements = DB::table('advertisement_apartment')->where('apartment_id', $apartment->id)->get();
+
+            foreach ($advertisements as $advertisement) {
+                if ($apartment->visibility = 1) {
+                    $todayDate = date_create();
+                    $todayFormatted = date_format($todayDate, 'Y-m-d H:i:s');
+                    $endDate = $advertisement->expiration_date;
+
+                    if ($todayFormatted > $endDate) {
+
+                        $apartment->visibility = 0;
+                        $apartment->advertisements()->detach();
+                    }
+                }
+                $apartment->save();
+            }
+
+
+        }
+
+
+
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -80,10 +104,12 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        $advertisements = DB::table('advertisement_apartment')->where('apartment_id', $apartment->id)->get();
+
         $count = DB::table('messages')
-            ->where('apartment_id',$apartment->id)
+            ->where('apartment_id', $apartment->id)
             ->count();
-        return view('admin.apartments.show', compact('apartment','count'));
+        return view('admin.apartments.show', compact('apartment', 'count', 'advertisements'));
     }
 
     /**
@@ -192,15 +218,15 @@ class ApartmentController extends Controller
 
     public function messages(Apartment $apartment)
     {
-        $messages = Message::select('apartment_id','name','email','text','created_at')
+        $messages = Message::select('apartment_id', 'name', 'email', 'text', 'created_at')
             ->where('apartment_id', $apartment->id)
-            ->orderBy('id','desc')
+            ->orderBy('id', 'desc')
             ->paginate(6);
 
         $count = DB::table('messages')
-            ->where('apartment_id',$apartment->id)
+            ->where('apartment_id', $apartment->id)
             ->count();
-        
-        return view('admin.apartments.messages', compact('apartment','messages','count'));
+
+        return view('admin.apartments.messages', compact('apartment', 'messages', 'count'));
     }
 }

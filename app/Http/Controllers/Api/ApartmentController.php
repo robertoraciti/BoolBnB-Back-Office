@@ -65,7 +65,6 @@ class ApartmentController extends Controller
     {
         $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
-            // ->where('address', "LIKE", "%" . $address . "%")
             ->get();
 
         if (!$apartments) {
