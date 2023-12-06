@@ -35,16 +35,16 @@
             </div>
             <div class="col-lg-8 col-sm-12">
 
-                <div class="col-lg-6 col-sm-12 my-2"> <b>Address:</b> {{ $apartment->address }} </div>
-                <div class="col-lg-6 col-sm-12 my-2"> <b>Host:</b> {{ $apartment->user->name }} {{ $apartment->user->surname }} </div>
-                <div class="col-lg-6 col-sm-12 my-2 d-none"> <b>Latitude:</b> {{ $apartment->latitude }} </div>
-                <div class="col-lg-6 col-sm-12 my-2 d-none"> <b>Longitude:</b> {{ $apartment->longitude }} </div>
-                <div class="col-lg-6 col-sm-12 my-2"> <b>Rooms:</b> {{ $apartment->rooms }} </div>
-                <div class="col-lg-6 col-sm-12 my-2"> <b>Beds:</b> {{ $apartment->beds }} </div>
-                <div class="col-lg-6 col-sm-12 my-2"> <b>Bathrooms:</b> {{ $apartment->bathrooms }} </div>
-                <div class="col-lg-6 col-sm-12 my-2"> <b>Mq:</b> {{ $apartment->mq }} </div>
-                <div class="col-lg-6 col-sm-12 my-2"> <b>Price:</b> €{{ $apartment->price }} </div>
-                <div class="col-lg-6 col-sm-12 my-2"> <b>Visibility:</b> {{ $apartment->visibility }} </div>
+                <div class="col-sm-12 my-2"> <b>Address:</b> {{ $apartment->address }} </div>
+                <div class="col-sm-12 my-2"> <b>Host:</b> {{ $apartment->user->name }} {{ $apartment->user->surname }} </div>
+                <div class="col-sm-12 my-2 d-none"> <b>Latitude:</b> {{ $apartment->latitude }} </div>
+                <div class="col-sm-12 my-2 d-none"> <b>Longitude:</b> {{ $apartment->longitude }} </div>
+                <div class="col-sm-12 my-2"> <b>Rooms:</b> {{ $apartment->rooms }} </div>
+                <div class="col-sm-12 my-2"> <b>Beds:</b> {{ $apartment->beds }} </div>
+                <div class="col-sm-12 my-2"> <b>Bathrooms:</b> {{ $apartment->bathrooms }} </div>
+                <div class="col-sm-12 my-2"> <b>Mq:</b> {{ $apartment->mq }} </div>
+                <div class="col-sm-12 my-2"> <b>Price:</b> €{{ $apartment->price }} </div>
+                <div class="col-sm-12 my-2"> <b>Visibility:</b> {{ $apartment->visibility }} </div>
             </div>
             <div class="col-12 g-3"><b>Description:</b> <p> {{ $apartment->description }} </p></div>
 
