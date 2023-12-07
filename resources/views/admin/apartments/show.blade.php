@@ -74,7 +74,7 @@
             <div class="col-6">
                 <p>
                     <strong>Advertisements:</strong>
-                    @forelse ($apartment->advertisements as $advertisement)
+                    @forelse ($advertisements as $advertisement)
                         <br>
                         <p>Your promotion will expire on {{$advertisement->expiration_date}}</p>
 
