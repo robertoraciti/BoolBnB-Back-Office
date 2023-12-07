@@ -108,6 +108,11 @@ class ApartmentController extends Controller
         }
         $apartments = $apartments_query->get();
 
+        foreach ($apartments as $apartment) {
+            $apartment->description = $apartment->getAbstract(200);
+            // cover image
+            $apartment->cover_image = $apartment->getAbsUriImage();
+        }
 
 
 
