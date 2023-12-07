@@ -101,10 +101,11 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        $advertisements = DB::table('advertisement_apartment')->where('apartment_id', $apartment->id)->get();
         $count = DB::table('messages')
             ->where('apartment_id', $apartment->id)
             ->count();
-        return view('admin.apartments.show', compact('apartment', 'count'));
+        return view('admin.apartments.show', compact('apartment', 'count', 'advertisements'));
     }
 
     /**

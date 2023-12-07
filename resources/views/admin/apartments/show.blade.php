@@ -76,8 +76,7 @@
                     <strong>Advertisements:</strong>
                     @forelse ($apartment->advertisements as $advertisement)
                         <br>
-                        <p>Active promotion: {{ $advertisement->label ?? '' }} </p>
-                        <p>Your promotion will expire on {{$advertisement->pivot->expiration_date}}</p>
+                        <p>Your promotion will expire on {{$advertisement->expiration_date}}</p>
 
 
                     @empty
