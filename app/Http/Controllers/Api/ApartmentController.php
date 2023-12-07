@@ -91,26 +91,23 @@ class ApartmentController extends Controller
 
 
 
-    public function advancedSearch($lat, $lon, $radius, $rooms, $beds) 
+    public function advancedSearch(Request $request, $lat, $lon, $radius, $rooms, $beds)
     // in caso aggiungere services come variabile
     {
-        // // $filters = $request->all();
-        // $services = Service::all()->pluck('id');
-        // $service_ids = $apartment->services->pluck('id')->toArray();
-        $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+        $filters = $request->all();
+        $apartments_query = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
             ->where('rooms', '>=', $rooms)
-            ->where('beds', '>=', $beds)
+            ->where('beds', '>=', $beds);
+        if (!empty($filters['activeServices'])) {
+            foreach ($filters['activeServices'] as $service) {
+                $apartments_query->whereHas('services', function ($query) use ($service) {
+                    $query->where('service_id', $service);
+                });
+            }
+        }
+        $apartments = $apartments_query->get();
 
-            ->get();
-        // $services = $apartments->services
-        // if (!empty($filters['activeServices'])) {
-        //     foreach ($filters['activeServices'] as $service) {
-        //         $apartments_query->whereHas('services', function ($query) use ($service) {
-        //             $query->where('service_id', $service);
-        //         });
-        //     }
-        // }
 
 
 
@@ -126,6 +123,8 @@ class ApartmentController extends Controller
                 array_push($filterApartments, $apartment);
             }
         }
+
+
 
         // if there was a cover image  
         // $apartment->cover_image = $apartment->getAbsUriImage();
