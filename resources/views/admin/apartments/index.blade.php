@@ -24,6 +24,7 @@
                             <th scope="col" class="text-center d-none d-md-table-cell">Mq</th>
                             <th scope="col" class="text-center d-none d-md-table-cell">Price</th>
                             <th scope="col" class="text-center">Promoted</th>
+                            <th scope="col" class="text-center">Expire</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -43,6 +44,14 @@
                                 <div class="form-check form-switch ">
                                     <input class="form-check-input ms-1" type="checkbox" role="switch" disabled id=" @if($apartment->visibility == 1) ? 'flexSwitchCheckChecked' : 'flexSwitchCheckDefault' @endif " @if($apartment->visibility == 1) ? checked :  @endif>
                                 </div>
+                            </td>
+                            <td class="text-center">
+                                @forelse ($advertisements as $advertisement)
+                        
+                                    {{$advertisement->expiration_date}}</p>
+                                @empty
+                                    <span>Not promoted</span>
+                                @endforelse
                             </td>
                             <td>
                                 <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i

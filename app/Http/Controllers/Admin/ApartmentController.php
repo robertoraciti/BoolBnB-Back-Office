@@ -51,7 +51,7 @@ class ApartmentController extends Controller
 
 
         }
-        return view('admin.apartments.index', compact('apartments'));
+        return view('admin.apartments.index', compact('apartments', 'advertisements'));
     }
 
     /**
