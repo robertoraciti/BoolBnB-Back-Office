@@ -25,13 +25,13 @@ use App\Http\Controllers\Api\MessageController;
 
 // # APARTMENT API
 Route::apiResource('apartments', ApartmentController::class)->only('index', 'show');
-Route::post('/get-apartments-by-filters', [ApartmentController::class, 'apartmentsByFilters']);
+Route::get('/get-apartments-by-filters', [ApartmentController::class, 'apartmentsByFilters']);
 
 // Rotta per ricerca HOMEPAGE
 Route::get('/search/{lat}/{lon}/{radius}', [ApartmentController::class, 'homepageSearch']);
 
 // Rotta per ricerca avanzata
-Route::get('/search/{lat}/{lon}/{radius}/{rooms}/{beds}', [ApartmentController::class, 'advancedSearch']);
+Route::get('/search/{lat}/{lon}/{radius}/{rooms}/{beds}', [ApartmentController::class, 'advancedSearch']); // in caso aggiungere services come variabile
 
 // # SERVICE API
 Route::apiResource('services', ServiceController::class)->only('index');
