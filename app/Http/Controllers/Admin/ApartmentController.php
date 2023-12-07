@@ -48,8 +48,6 @@ class ApartmentController extends Controller
                 }
                 $apartment->save();
             }
-
-
         }
         return view('admin.apartments.index', compact('apartments', 'advertisements'));
     }
