@@ -31,7 +31,7 @@ Route::get('/get-apartments-by-filters', [ApartmentController::class, 'apartment
 Route::get('/search/{lat}/{lon}/{radius}', [ApartmentController::class, 'homepageSearch']);
 
 // Rotta per ricerca avanzata
-Route::get('/search/{lat}/{lon}/{radius}/{rooms}/{beds}', [ApartmentController::class, 'advancedSearch']); // in caso aggiungere services come variabile
+Route::post('/search/{lat}/{lon}/{radius}/{rooms}/{beds}', [ApartmentController::class, 'advancedSearch']); // in caso aggiungere services come variabile
 
 // # SERVICE API
 Route::apiResource('services', ServiceController::class)->only('index');
