@@ -91,16 +91,26 @@ class ApartmentController extends Controller
 
 
 
-    public function advancedSearch($lat, $lon, $radius, $rooms, $beds)
+    public function advancedSearch($lat, $lon, $radius, $rooms, $beds) 
+    // in caso aggiungere services come variabile
     {
+        // // $filters = $request->all();
+        // $services = Service::all()->pluck('id');
+        // $service_ids = $apartment->services->pluck('id')->toArray();
         $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
-            // ->where('address', "LIKE", "%" . $address . "%")
-            // ->where('latitude', $latitude)
-            // ->where('longitude', $longitude)
             ->where('rooms', '>=', $rooms)
             ->where('beds', '>=', $beds)
+
             ->get();
+        // $services = $apartments->services
+        // if (!empty($filters['activeServices'])) {
+        //     foreach ($filters['activeServices'] as $service) {
+        //         $apartments_query->whereHas('services', function ($query) use ($service) {
+        //             $query->where('service_id', $service);
+        //         });
+        //     }
+        // }
 
 
 
@@ -109,7 +119,6 @@ class ApartmentController extends Controller
         }
 
         $filterApartments = [];
-
         foreach ($apartments as $apartment) {
 
 
