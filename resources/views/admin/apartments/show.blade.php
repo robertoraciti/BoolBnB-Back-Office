@@ -51,14 +51,15 @@
                 <div class="col-sm-12 my-2"> <b>Price:</b> €{{ $apartment->price }} </div>
                 <div class="col-sm-12 my-2"> <b>Visibility:</b> {{ $apartment->visibility }} </div>
             </div>
-            <div class="col-12 g-3"><b>Description:</b>
-                <p> {{ $apartment->description }} </p>
-            </div>
 
         </div>
+        <div class="row mt-5 border">
+            <label class="form-label ms-style"><strong>Description:</strong> </label>
+            <p> {{ $apartment->description }} </p>
+        </div>
 
-        <div class="row ">
-            <label class="form-label g-3">Services:</label>
+        <div class="row mt-2 border">
+            <label class="form-label ms-style"><strong>Services:</strong></label>
 
             @forelse ($apartment->services as $service)
                 <div class="col-sm-6 col-md-4">
@@ -74,24 +75,30 @@
 
 
 
-        <div class="row mt-5">
-            <div class="col-6">
-                <p>
-                    <strong>Advertisements:</strong>
-                    @forelse ($advertisements as $advertisement)
-                        <br>
-                        <p>Your promotion will expire on {{ $advertisement->expiration_date }}</p>
+        <div class="row my-5 border">
+
+            <label class="ms-style"><strong>Advertisements:</strong></label>
+            @forelse ($advertisements as $advertisement)
+                <br>
+                <p>Your promotion will expire on {{ $advertisement->expiration_date }}</p>
 
 
-                    @empty
-                        <span>Not promoted</span>
-                    @endforelse
-                </p>
+            @empty
+                <span>Not promoted</span>
+            @endforelse
 
-            </div>
+
         </div>
-    @endsection
+    </div>
+@endsection
 
-    @section('modal')
-        @include('partials.modals.apartments._modalDelete')
-    @endsection
+@section('modal')
+    @include('partials.modals.apartments._modalDelete')
+@endsection
+
+<style>
+    .ms-style {
+        background-color: royalblue;
+        color: white;
+    }
+</style>

@@ -43,13 +43,6 @@
                                 <td class="text-center"><i
                                         class="@if ($apartment->visibility == 1) ? ' fa-star fa-solid ' : ' fa-star fa-regular ' @endif "></i>
                                 </td>
-                                {{-- <td class="text-center">
-                                    <div class="form-check form-switch ">
-                                        <input class="form-check-input ms-1" type="checkbox" role="switch" disabled
-                                            id=" @if ($apartment->visibility == 1) ? 'flexSwitchCheckChecked' : 'flexSwitchCheckDefault' @endif "
-                                            @if ($apartment->visibility == 1) ? checked : @endif>
-                                    </div> --}}
-                                </td>
                                 <td class="text-center">
                                     @forelse ($advertisements as $advertisement)
                                         <p> {{ $advertisement->expiration_date }}</p>
