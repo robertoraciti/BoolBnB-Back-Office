@@ -15,6 +15,7 @@ class Message extends Model
         'name',
         'email',
         'text',
+        'read',
     ];
     public function apartment(){
 
