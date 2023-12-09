@@ -41,3 +41,6 @@ Route::post('/message', [MessageController::class, 'messageReceived']);
 
 // APARTMENT VIEW
 Route::post('/apartment/{id}', [ApartmentController::class, 'apartmentView']);
+
+// LOGIN API
+Route::post('login', 'Auth\LoginController@login');
