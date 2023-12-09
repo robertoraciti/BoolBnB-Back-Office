@@ -210,7 +210,8 @@ class ApartmentController extends Controller
 
         $apartment->save();
 
-        return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Promoted with success');
+        // return redirect()->route('admin.apartments.show', $apartment)->with('message_type', 'success')->with('message', 'Promoted with success');
+        return redirect()->route('thank-you');
     }
 
     public function messages(Apartment $apartment)

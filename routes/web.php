@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ApartmentController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Admin\ThankYouController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
 
 
@@ -35,6 +36,8 @@ Route::middleware(['auth', 'verified'])
   });
 
 Route::get('/register', 'AuthController@index');
+
+Route::get('/thank-you', [ThankYouController::class, 'index'])->name('thank-you');
 
 
 require __DIR__ . '/auth.php';
