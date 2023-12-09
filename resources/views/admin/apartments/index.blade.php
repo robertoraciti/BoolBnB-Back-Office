@@ -24,7 +24,6 @@
                         <th scope="col" class="text-center d-none d-md-table-cell">Mq</th>
                         <th scope="col" class="text-center d-none d-md-table-cell">Price</th>
                         <th scope="col" class="text-center">Promoted</th>
-                        <th scope="col" class="text-center">Expire</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -42,13 +41,6 @@
                                 <td class="text-center d-none d-md-table-cell">€ {{ $apartment->price }}</td>
                                 <td class="text-center"><i
                                         class="@if ($apartment->visibility == 1) ? ' fa-star fa-solid ' : ' fa-star fa-regular ' @endif "></i>
-                                </td>
-                                <td class="text-center">
-                                    @forelse ($advertisements as $advertisement)
-                                        <p> {{ $advertisement->expiration_date }}</p>
-                                    @empty
-                                        <span>Not promoted</span>
-                                    @endforelse
                                 </td>
                                 <td>
                                     <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
