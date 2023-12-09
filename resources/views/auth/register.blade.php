@@ -95,7 +95,13 @@
                                     birth*</label>
                                 <div class="col-md-6">
                                     <input class="form-control w-50 @error('date_of_birth') is-invalid @enderror"
-                                        type="date" id="date_of_birth" name="date_of_birth" required max="07/12/2005">
+                                        type="date"
+                                        id="date_of_birth"
+                                        name="date_of_birth"
+                                        required
+                                        max="{{ $maxDate }}"
+                                        data-parsley-max-message="You must be atleast 18 years old" 
+                                    >
                                     @error('date_of_birth')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>You must be 18 years old</strong>
@@ -173,6 +179,7 @@
 
     </script>
     <script type="text/javascript">
-        $('#formControl').parsley();
+    $('#formControl').parsley();
+       
     </script>
 @endsection
