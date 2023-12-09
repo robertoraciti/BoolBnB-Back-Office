@@ -50,7 +50,6 @@
                 <div class="col-sm-12 my-2"> <b>Bathrooms:</b> {{ $apartment->bathrooms }} </div>
                 <div class="col-sm-12 my-2"> <b>Mq:</b> {{ $apartment->mq }} </div>
                 <div class="col-sm-12 my-2"> <b>Price:</b> €{{ $apartment->price }} </div>
-                <div class="col-sm-12 my-2"> <b>Visibility:</b> {{ $apartment->visibility }} </div>
             </div>
 
         </div>
