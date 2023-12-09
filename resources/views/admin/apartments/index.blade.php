@@ -9,22 +9,21 @@
 
 @section('content')
     <section class="container mt-5">
-        <a class="btn btn-primary" href="{{ route('admin.apartments.create') }}"><i class="fa-solid fa-plus me-2"></i>Add new
+        <a class="ms-bt" href="{{ route('admin.apartments.create') }}"><i class="fa-solid fa-plus me-2"></i>Add new
             apartment </a>
         <div class="my-5 table-responsive">
             <table class="table">
                 <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Address</th>
+                    <tr class="ms-styleB">
+                        <th scope="">Id</th>
+                        <th scope="">Name</th>
+                        <th scope="">Address</th>
                         <th scope="col" class="text-center d-none d-md-table-cell d-flex align-items-center">Rooms</th>
                         <th scope="col" class="text-center d-none d-md-table-cell">Beds</th>
                         <th scope="col" class="text-center d-none d-md-table-cell">Bathrooms</th>
                         <th scope="col" class="text-center d-none d-md-table-cell">Mq</th>
                         <th scope="col" class="text-center d-none d-md-table-cell">Price</th>
                         <th scope="col" class="text-center">Promoted</th>
-                        <th scope="col" class="text-center">Expire</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -42,13 +41,6 @@
                                 <td class="text-center d-none d-md-table-cell">€ {{ $apartment->price }}</td>
                                 <td class="text-center"><i
                                         class="@if ($apartment->visibility == 1) ? ' fa-star fa-solid ' : ' fa-star fa-regular ' @endif "></i>
-                                </td>
-                                <td class="text-center">
-                                    @forelse ($advertisements as $advertisement)
-                                        <p> {{ $advertisement->expiration_date }}</p>
-                                    @empty
-                                        <span>Not promoted</span>
-                                    @endforelse
                                 </td>
                                 <td>
                                     <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
@@ -76,3 +68,49 @@
         @include('partials.modals.apartments._modalDelete')
     @endforeach
 @endsection
+
+<style>
+    .ms-styleA {
+        background-color: #a3c422;
+
+    }
+
+    .ms-styleB {
+        background-color: #dcd2c3;
+        padding: 10px;
+        border-radius: 10px;
+        text-decoration: underline;
+        text-decoration-color: #a3c422
+    }
+
+    .ms-styleB2 {
+        background-color: #dcd2c3;
+        padding: 10px;
+        text-decoration: underline;
+        text-decoration-color: #a3c422
+    }
+
+    .ms-border {
+        border: 2px solid #dcd2c3;
+    }
+
+    .ms-bt {
+        background-color: #a3c422;
+        color: black;
+        padding: 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin: 0 10px 0px;
+        border: 1px solid black
+    }
+
+    .ms-btB {
+        background-color: #dcd2c3;
+        color: black;
+        padding: 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin: 0 10px 0px;
+        border: 1px solid black;
+    }
+</style>

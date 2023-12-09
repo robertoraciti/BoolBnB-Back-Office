@@ -8,10 +8,11 @@
 
 @section('content')
     <div class="container">
+        <div class="mt-3"><a href= " {{ route('admin.apartments.show', $apartment) }}" class="ms-bt"><i
+                    class="fa-solid fa-arrow-left me-2"></i>Go Back</a></div>
 
         <div class="mt-4">
-            <h2 class="ms-style ms-rounded text-center"> You have a total of <span
-                    class=" ms-yellow">{{ $count }}</span> received
+            <h2 class="ms-style ms-rounded text-center"> You have a total of <span>{{ $count }}</span> received
                 messages for {{ $apartment->name }}</h2>
             {{ $messages->links('pagination::bootstrap-5') }}
         </div>
@@ -41,21 +42,35 @@
 
 <style>
     .ms-style {
-        background-color: royalblue;
-        color: white;
+        background-color: #a3c422;
     }
 
     .ms-rounded {
         border-radius: 15px
     }
 
-    .ms-yellow {
-        color: yellow;
+    .ms-styleB {
+        color: #dcd2c3;
+    }
+
+    .card {
+        background-color: #dcd2c3 !important;
+        border: 2px solid #a3c422 !important;
     }
 
     .card:hover {
         transform: translate3D(0, -1px, 0) scale(1.03);
         box-shadow: 8px 14px 38px rgba(39, 44, 49, .06), 1px 3px 8px rgba(39, 44, 49, .03);
         transition: all .5s ease;
+    }
+
+    .ms-bt {
+        background-color: #a3c422;
+        color: black;
+        padding: 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin: 0 10px 0px;
+        border: 1px solid black
     }
 </style>
