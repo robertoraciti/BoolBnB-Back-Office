@@ -32,6 +32,19 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
+    public function login(Request $request)
+    {
+        // ... Logica di autenticazione ...
+
+        // Dopo l'autenticazione con successo
+        $user = Auth::user();
+
+        return response()->json([
+            'user' => $user,
+            'isLoggedIn' => true,
+        ]);
+    }
+
     /**
      * Destroy an authenticated session.
      */
