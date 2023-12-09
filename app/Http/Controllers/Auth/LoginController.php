@@ -28,6 +28,7 @@ class LoginController extends Controller
                 'user' => $userDetails,
                 'access_token' => $tokenResult->accessToken,
                 'token_type' => 'Bearer',
+                'expires_at' => now()->addDays(30), // Esempio di scadenza di 30 giorni
             ]);
         }
 
