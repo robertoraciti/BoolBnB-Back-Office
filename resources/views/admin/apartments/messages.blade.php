@@ -12,8 +12,12 @@
                     class="fa-solid fa-arrow-left me-2"></i>Go Back</a></div>
 
         <div class="mt-4">
-            <h2 class="ms-style ms-rounded text-center"> You have a total of <span>{{ $count }}</span> received
+            @if ($number == 0)
+                <h2>You don't have new messages for {{ $apartment->name }}</h2>
+            @else
+            <h2 class="ms-style ms-rounded text-center"> You have a total of <span>{{ $number }}</span> unread
                 messages for {{ $apartment->name }}</h2>
+            @endif
             {{ $messages->links('pagination::bootstrap-5') }}
         </div>
 

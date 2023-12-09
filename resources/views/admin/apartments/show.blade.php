@@ -17,7 +17,7 @@
                     <a href="{{ route('admin.apartments.edit', $apartment) }}" class="ms-btB">Edit <i
                             class="fa-solid fa-pencil ms-1"></i></a>
 
-                    <a href="{{ route('admin.apartments.messages', $apartment) }}" class="ms-bt">Messages <span
+                    <a href="{{ route('admin.apartments.messages', ['apartment' => $apartment, 'count' => $count]) }}" class="ms-bt">Messages <span
                             class="badge text-bg-secondary">{{ $count }}</span> <i
                             class="fa-solid fa-envelope ms-1"></i></a>
 
