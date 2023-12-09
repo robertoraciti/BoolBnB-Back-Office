@@ -8,7 +8,6 @@
 
 
 @section('content')
-use Carbon\Carbon
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
             <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary me-3"><i
