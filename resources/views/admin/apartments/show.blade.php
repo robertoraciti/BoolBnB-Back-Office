@@ -81,7 +81,7 @@
             <label class="ms-styleB2"><strong>Advertisements:</strong></label>
             @forelse ($advertisements as $advertisement)
                 <br>
-                <p>Your promotion will expire on {{ $advertisement->expiration_date }}</p>
+                <p>Your promotion will expire on {{ \Carbon\Carbon::parse($advertisement->expiration_date)->format('d-m-Y') }} </p>
 
 
             @empty
