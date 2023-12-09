@@ -30,12 +30,13 @@ class ApartmentController extends Controller
     public function index()
     {
         $apartments = Apartment::orderBy('id', 'desc')->where('user_id', '=', Auth::user()->id)->paginate(8);
+        $advertisements = [];
         foreach ($apartments as $apartment) {
 
-            $advertisements = DB::table('advertisement_apartment')->where('apartment_id', $apartment->id)->get();
+            $apartmentAdvertisements = DB::table('advertisement_apartment')->where('apartment_id', $apartment->id)->orderBy('expiration_date', 'asc')->get();
 
-            foreach ($advertisements as $advertisement) {
-                if ($apartment->visibility = 1) {
+            foreach ($apartmentAdvertisements as $advertisement) {
+                if ($apartment->visibility == 1) {
                     $todayDate = date_create();
                     $todayFormatted = date_format($todayDate, 'Y-m-d H:i:s');
                     $endDate = $advertisement->expiration_date;
@@ -48,6 +49,8 @@ class ApartmentController extends Controller
                 }
                 $apartment->save();
             }
+
+            $advertisements[$apartment->id] = $apartmentAdvertisements;
         }
         return view('admin.apartments.index', compact('apartments', 'advertisements'));
     }

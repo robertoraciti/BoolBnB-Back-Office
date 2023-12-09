@@ -13,8 +13,35 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Login succesful']);
+            $user = Auth::user();
+            $tokenResult = $user->createToken('authToken');
+
+            $userDetails = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                // Aggiungi altri campi se necessario
+            ];
+
+            return response()->json([
+                'message' => 'Login successful',
+                'user' => $userDetails,
+                'access_token' => $tokenResult->accessToken,
+                'token_type' => 'Bearer',
+            ]);
         }
+
         return response()->json(['message' => 'Invalid credentials'], 401);
+    }
+
+    public function logout(Request $request)
+    {
+        // Revoca il token di accesso corrente
+        if ($request->user()) {
+            // Revoca il token di accesso corrente
+            $request->user()->token()->revoke();
+        }
+
+        return response()->json(['message' => 'Logout successful']);
     }
 }

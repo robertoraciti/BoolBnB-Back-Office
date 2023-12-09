@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,7 @@ Route::post('/message', [MessageController::class, 'messageReceived']);
 Route::post('/apartment/{id}', [ApartmentController::class, 'apartmentView']);
 
 // LOGIN API
-Route::post('login', 'Auth\LoginController@login');
+Route::post('login', [LoginController::class, 'login']);
+
+// LOGOUT API
+Route::post('logout', [LoginController::class, 'logout']);

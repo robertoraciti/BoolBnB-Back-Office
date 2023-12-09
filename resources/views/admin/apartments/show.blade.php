@@ -8,6 +8,7 @@
 
 
 @section('content')
+use Carbon\Carbon
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center">
             <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary me-3"><i
@@ -80,7 +81,7 @@
             <label class="ms-style"><strong>Advertisements:</strong></label>
             @forelse ($advertisements as $advertisement)
                 <br>
-                <p>Your promotion will expire on {{ $advertisement->expiration_date }}</p>
+                <p>Your promotion will expire on {{ \Carbon\Carbon::parse($advertisement->expiration_date)->format('d-m-Y') }} </p>
 
 
             @empty
