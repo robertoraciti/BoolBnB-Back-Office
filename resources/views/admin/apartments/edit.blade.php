@@ -11,8 +11,6 @@
 
     <script type="text/javascript"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox-web.js"></script>
-    <link rel="stylesheet" type="text/css"
-        href="https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.12/SearchBox.css" />
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -107,8 +105,8 @@
                             <label for="visibility" class="form-label">Visibility</label>
                             <select name="visibility" id="visibility"
                                 class="form-select @error('visibility') is-invalid @enderror">
-                                <option value="0">Not visible</option>
-                                <option value="1">Visible</option>
+                                <option value="0" {{ $apartment->visibility == 0 ? 'selected' : '' }}>Not visible</option>
+                                <option value="1"{{ $apartment->visibility == 1 ? 'selected' : '' }}>Visible</option>
 
                             </select>
                             @error('visibility')

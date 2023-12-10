@@ -10,6 +10,7 @@ use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Message;
 
+use App\Models\View;
 use DateInterval;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 use App\Http\Controllers\Controller;
 
@@ -103,6 +105,15 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         $advertisements = DB::table('advertisement_apartment')->where('apartment_id', $apartment->id)->get();
+
+        $view = new View([
+            'date' => Carbon::now(),
+            'ip_address' => request()->ip(),
+            // Altri campi come 'data' se necessario
+        ]);
+
+        $apartment->views()->save($view);
+
         $count = DB::table('messages')
             ->where('apartment_id', $apartment->id)
             ->count();
