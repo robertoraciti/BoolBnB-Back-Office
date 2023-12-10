@@ -30,7 +30,7 @@ Route::middleware(['auth', 'verified'])
     Route::get('/', [AdminPageController::class, 'index'])->name('home');
     Route::resource('apartments', ApartmentController::class);
     Route::get('/apartments/{apartment}/advertise', [ApartmentController::class, 'advertise'])->name('apartments.advertise');
-    Route::get('/apartments/{apartment}/messages', [ApartmentController::class, 'messages'])->name('apartments.messages');
+    Route::get('/apartments/{apartment}/messages/{count}', [ApartmentController::class, 'messages'])->name('apartments.messages');
     Route::post('/apartments/{apartment}/advertise/checkout', [ApartmentController::class, 'advCheckout'])->name('advertisement.checkout');
 
   });

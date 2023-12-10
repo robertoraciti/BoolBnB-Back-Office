@@ -108,6 +108,7 @@ class ApartmentController extends Controller
 
         $count = DB::table('messages')
             ->where('apartment_id', $apartment->id)
+            ->where('read', 0)
             ->count();
         return view('admin.apartments.show', compact('apartment', 'count', 'advertisements'));
     }
@@ -217,17 +218,24 @@ class ApartmentController extends Controller
         return redirect()->route('thank-you');
     }
 
-    public function messages(Apartment $apartment)
+    public function messages(Apartment $apartment, $number)
     {
-        $messages = Message::select('apartment_id', 'name', 'email', 'text', 'created_at')
-            ->where('apartment_id', $apartment->id)
+        $filteredMessages  = Message::where('apartment_id', $apartment->id)
+            ->where('read', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+            foreach($filteredMessages as $message) {
+                $message->read = 1;
+                $message->save();
+                
+            };
+            
+            $messages = Message::where('apartment_id', $apartment->id)
             ->orderBy('id', 'desc')
             ->paginate(6);
-
-        $count = DB::table('messages')
-            ->where('apartment_id', $apartment->id)
-            ->count();
-
-        return view('admin.apartments.messages', compact('apartment', 'messages', 'count'));
+            
+            // dd($messages);
+        return view('admin.apartments.messages', compact('apartment', 'messages', 'number'));
     }
 }
