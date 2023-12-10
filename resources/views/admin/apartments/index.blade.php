@@ -119,10 +119,6 @@
         color: #a3c422;
     }
 
-    .fa-solid {
-        color: #a3c422;
-    }
-
     .fa-solid:hover {
         color: black;
     }
