@@ -17,6 +17,20 @@
             list-style:none ;
 
         }
+        .button-1 {
+            background-color: #a3c422;
+            border: 1px solid black;
+            padding: 5px 35px;
+            border-radius: 20px;
+            font-weight: 400;
+            color: black;
+        }
+
+
+       .button-1:hover {
+    background-color: rgba(0, 0, 0, 0.332);
+    color: #dcd2c3;
+  }
     </style>
 
 @endsection
@@ -75,9 +89,15 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                                <button
+                                type="submit"
+                                class="button-1"
+                                data-bs-toggle="modal"
+                                :data-bs-target="'#loginModal'"
+                              >
+                              {{ __('Login') }}
+                              </button>
+
 
                                 @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
