@@ -101,7 +101,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 d-none">
                             <label for="visibility" class="form-label">Visibility</label>
                             <select name="visibility" id="visibility"
                                 class="form-select @error('visibility') is-invalid @enderror">
