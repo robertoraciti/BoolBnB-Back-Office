@@ -15,8 +15,8 @@
             @if ($number == 0)
                 <h2>You don't have new messages for {{ $apartment->name }}</h2>
             @else
-            <h2 class="ms-style ms-rounded text-center"> You have a total of <span>{{ $number }}</span> unread
-                messages for {{ $apartment->name }}</h2>
+                <h2 class="ms-style ms-rounded text-center"> You have a total of <span>{{ $number }}</span> unread
+                    messages for {{ $apartment->name }}</h2>
             @endif
             {{ $messages->links('pagination::bootstrap-5') }}
         </div>
@@ -72,9 +72,14 @@
         background-color: #a3c422;
         color: black;
         padding: 5px;
-        border-radius: 5px;
+        border-radius: 20px;
         text-decoration: none;
         margin: 0 10px 0px;
         border: 1px solid black
+    }
+
+    .ms-bt:hover {
+        background-color: rgba(0, 0, 0, 0.615);
+        color: #a3c422;
     }
 </style>

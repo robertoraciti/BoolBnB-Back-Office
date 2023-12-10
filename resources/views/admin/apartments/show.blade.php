@@ -17,8 +17,8 @@
                     <a href="{{ route('admin.apartments.edit', $apartment) }}" class="ms-btB">Edit <i
                             class="fa-solid fa-pencil ms-1"></i></a>
 
-                    <a href="{{ route('admin.apartments.messages', ['apartment' => $apartment, 'count' => $count]) }}" class="ms-bt">Messages <span
-                            class="badge text-bg-secondary">{{ $count }}</span> <i
+                    <a href="{{ route('admin.apartments.messages', ['apartment' => $apartment, 'count' => $count]) }}"
+                        class="ms-bt">Messages <span class="badge text-bg-secondary">{{ $count }}</span> <i
                             class="fa-solid fa-envelope ms-1"></i></a>
 
                     <button type="button" class="btn btn-outline-danger mx-1" data-bs-toggle="modal"
@@ -81,7 +81,8 @@
             <label class="ms-styleB2"><strong>Advertisements:</strong></label>
             @forelse ($advertisements as $advertisement)
                 <br>
-                <p>Your promotion will expire on {{ \Carbon\Carbon::parse($advertisement->expiration_date)->format('d-m-Y') }} </p>
+                <p>Your promotion will expire on
+                    {{ \Carbon\Carbon::parse($advertisement->expiration_date)->format('d-m-Y') }} </p>
 
 
             @empty
@@ -126,7 +127,7 @@
         background-color: #a3c422;
         color: black;
         padding: 5px;
-        border-radius: 5px;
+        border-radius: 20px;
         text-decoration: none;
         margin: 0 10px 0px;
         border: 1px solid black
@@ -136,10 +137,20 @@
         background-color: #dcd2c3;
         color: black;
         padding: 5px;
-        border-radius: 5px;
+        border-radius: 20px;
         text-decoration: none;
         margin: 0 10px 0px;
         border: 1px solid black;
+    }
+
+    .ms-bt:hover {
+        background-color: rgba(0, 0, 0, 0.615);
+        color: #a3c422;
+    }
+
+    .ms-btB:hover {
+        background-color: rgba(0, 0, 0, 0.332);
+        color: #dcd2c3;
     }
 
     /* .button {

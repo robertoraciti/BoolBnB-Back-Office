@@ -105,7 +105,8 @@
                             <label for="visibility" class="form-label">Visibility</label>
                             <select name="visibility" id="visibility"
                                 class="form-select @error('visibility') is-invalid @enderror">
-                                <option value="0" {{ $apartment->visibility == 0 ? 'selected' : '' }}>Not visible</option>
+                                <option value="0" {{ $apartment->visibility == 0 ? 'selected' : '' }}>Not visible
+                                </option>
                                 <option value="1"{{ $apartment->visibility == 1 ? 'selected' : '' }}>Visible</option>
 
                             </select>
@@ -311,16 +312,17 @@
     <style>
         .ms-bt {
             background-color: #a3c422;
-            color: #ffffff;
+            color: black;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 20px;
             text-decoration: none;
             margin: 0 10px 0px;
-            border: 1px solid #a3c422;
+            border: 1px solid black;
         }
 
         .ms-bt:hover {
-            background-color: #87a938;
+            background-color: rgba(0, 0, 0, 0.615);
+            color: #a3c422;
         }
 
         .form-control {
@@ -372,9 +374,246 @@
         .invalid-feedback {
             color: #dc3545;
         }
-
-        
     </style>
     <style>
-        .tt-search-box{margin-top:12px;font-size:14px;font-family:Helvetica,Arial,sans-serif!important;position:relative}.tt-searchbox-filter-label{font-size:14px;background-color:#edf2f7;padding:2px 0 2px 4px;border-radius:2px;color:#000;font-weight:700;white-space:nowrap;border:1px solid transparent;align-items:center;min-width:0;overflow:hidden;max-width:100px;box-sizing:border-box;flex-shrink:0;}.tt-searchbox-filter-label.-hidden{display:none}.tt-searchbox-filter-label__text{text-overflow:ellipsis;overflow:hidden}.tt-searchbox-filter-label__close-button{cursor:pointer;padding:0 4px;}.tt-searchbox-filter-label__close-button svg{fill:#ccc;width:10px;height:10px}.tt-searchbox-filter-label__close-button:hover svg{fill:#7a7e80}.tt-searchbox-filter-label.-highlighted .tt-searchbox-filter-label__close-button svg{fill:#7a7e80}.tt-search-box-input-container{background:#fff;border: var(--bs-border-width) solid var(--bs-border-color);border-radius: var(--bs-border-radius);padding:6px;display:flex;align-items:center;transition:border-color .2s ease,box-shadow .2s ease;}.tt-search-box-input-container.-focused{box-shadow:0 2px 9px -1px rgba(0,0,0,.19);border-color:transparent}.mapboxgl-control-container .tt-search-box-input-container{box-shadow:0 2px 9px -1px rgba(0,0,0,.19);}.mapboxgl-control-container .tt-search-box-input-container.-focused{border-color:#ccc}.mapboxgl-control-container .tt-search-box-input-container:hover{border-color:#ccc}.tt-search-box-input{position:relative;vertical-align:text-bottom;border:none;outline:none;box-shadow:none;padding-left:4px;background-position:0;background-color:transparent;width:calc(100% - 50px);font-size:14px;min-width:0}.tt-search-box-input::-ms-clear{display:none}.tt-search-box-result-list-container{max-height:375px;border-bottom-right-radius:5px;border-bottom-left-radius:5px;position:absolute;z-index:10;width:100%;box-shadow:0 2px 9px -1px rgba(0,0,0,.19);background-color:#fff;padding:3px 0}.tt-search-box-result-list{background-color:#fff;cursor:pointer;height:auto;padding:4px 6px;color:#7a7e80;display:flex;align-items:baseline;}.tt-search-box-result-list>svg{flex-shrink:0;fill:#7a7e80;margin-right:4px;align-self:center;}.tt-search-box-result-list:first-child{display: none;}.tt-search-box-result-list.suggestion{margin-bottom:10px;position:relative; display: none;}.tt-search-box-result-list.suggestion:after{content:"";position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);height:1px;width:calc(100% - 32px);background:rgba(0,0,0,.08);display: none;}.tt-search-box-result-category-icon{background-size:24px;background-position:50%;float:left;padding:12px;margin:5px 12px 0 4px;display: none;}.tt-search-box-result-suggestion-icon{background-size:22px;background-position:50%;border-radius:50%;float:left;margin:5px 9px 0 0;padding:15px;display: none;}.tt-search-box-result-suggestion-icon.-brand{background-size:16px}.tt-search-box-result-list-suggestion-arrow{float:right;margin-top:8px;display: none;}.tt-search-box-result-list-text-suggestion{align-self:center;width:100%;display: none;}.tt-search-box-result-list-text-content,.tt-search-box-result-list-text-suggestion{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tt-search-box-result-list-distance{font-size:10px;margin-left:auto;padding-left:8px;white-space:nowrap;word-break:keep-all}.tt-search-box-result-list.-highlighted{background-color:#edf2f7!important;height:auto}.tt-search-box-result-list-address{overflow:hidden;width:100%;}.tt-search-box-result-list-address>*{display:block}.tt-search-box-result-list-bold+.tt-search-box-result-list-text-content{margin-top:4px}.tt-search-box-result-list-bold{color:#000;font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tt-search-box-close-icon{cursor:pointer;margin-left:auto;fill:#ccc;transition:fill .2s ease;}.tt-search-box-close-icon:hover{fill:#7a7e80}.tt-search-box-close-icon.-hidden{visibility:hidden}
+        .tt-search-box {
+            margin-top: 12px;
+            font-size: 14px;
+            font-family: Helvetica, Arial, sans-serif !important;
+            position: relative
+        }
+
+        .tt-searchbox-filter-label {
+            font-size: 14px;
+            background-color: #edf2f7;
+            padding: 2px 0 2px 4px;
+            border-radius: 2px;
+            color: #000;
+            font-weight: 700;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            align-items: center;
+            min-width: 0;
+            overflow: hidden;
+            max-width: 100px;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
+        .tt-searchbox-filter-label.-hidden {
+            display: none
+        }
+
+        .tt-searchbox-filter-label__text {
+            text-overflow: ellipsis;
+            overflow: hidden
+        }
+
+        .tt-searchbox-filter-label__close-button {
+            cursor: pointer;
+            padding: 0 4px;
+        }
+
+        .tt-searchbox-filter-label__close-button svg {
+            fill: #ccc;
+            width: 10px;
+            height: 10px
+        }
+
+        .tt-searchbox-filter-label__close-button:hover svg {
+            fill: #7a7e80
+        }
+
+        .tt-searchbox-filter-label.-highlighted .tt-searchbox-filter-label__close-button svg {
+            fill: #7a7e80
+        }
+
+        .tt-search-box-input-container {
+            background: #fff;
+            border: var(--bs-border-width) solid var(--bs-border-color);
+            border-radius: var(--bs-border-radius);
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .tt-search-box-input-container.-focused {
+            box-shadow: 0 2px 9px -1px rgba(0, 0, 0, .19);
+            border-color: transparent
+        }
+
+        .mapboxgl-control-container .tt-search-box-input-container {
+            box-shadow: 0 2px 9px -1px rgba(0, 0, 0, .19);
+        }
+
+        .mapboxgl-control-container .tt-search-box-input-container.-focused {
+            border-color: #ccc
+        }
+
+        .mapboxgl-control-container .tt-search-box-input-container:hover {
+            border-color: #ccc
+        }
+
+        .tt-search-box-input {
+            position: relative;
+            vertical-align: text-bottom;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            padding-left: 4px;
+            background-position: 0;
+            background-color: transparent;
+            width: calc(100% - 50px);
+            font-size: 14px;
+            min-width: 0
+        }
+
+        .tt-search-box-input::-ms-clear {
+            display: none
+        }
+
+        .tt-search-box-result-list-container {
+            max-height: 375px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            position: absolute;
+            z-index: 10;
+            width: 100%;
+            box-shadow: 0 2px 9px -1px rgba(0, 0, 0, .19);
+            background-color: #fff;
+            padding: 3px 0
+        }
+
+        .tt-search-box-result-list {
+            background-color: #fff;
+            cursor: pointer;
+            height: auto;
+            padding: 4px 6px;
+            color: #7a7e80;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .tt-search-box-result-list>svg {
+            flex-shrink: 0;
+            fill: #7a7e80;
+            margin-right: 4px;
+            align-self: center;
+        }
+
+        .tt-search-box-result-list:first-child {
+            display: none;
+        }
+
+        .tt-search-box-result-list.suggestion {
+            margin-bottom: 10px;
+            position: relative;
+            display: none;
+        }
+
+        .tt-search-box-result-list.suggestion:after {
+            content: "";
+            position: absolute;
+            bottom: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 1px;
+            width: calc(100% - 32px);
+            background: rgba(0, 0, 0, .08);
+            display: none;
+        }
+
+        .tt-search-box-result-category-icon {
+            background-size: 24px;
+            background-position: 50%;
+            float: left;
+            padding: 12px;
+            margin: 5px 12px 0 4px;
+            display: none;
+        }
+
+        .tt-search-box-result-suggestion-icon {
+            background-size: 22px;
+            background-position: 50%;
+            border-radius: 50%;
+            float: left;
+            margin: 5px 9px 0 0;
+            padding: 15px;
+            display: none;
+        }
+
+        .tt-search-box-result-suggestion-icon.-brand {
+            background-size: 16px
+        }
+
+        .tt-search-box-result-list-suggestion-arrow {
+            float: right;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .tt-search-box-result-list-text-suggestion {
+            align-self: center;
+            width: 100%;
+            display: none;
+        }
+
+        .tt-search-box-result-list-text-content,
+        .tt-search-box-result-list-text-suggestion {
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
+        }
+
+        .tt-search-box-result-list-distance {
+            font-size: 10px;
+            margin-left: auto;
+            padding-left: 8px;
+            white-space: nowrap;
+            word-break: keep-all
+        }
+
+        .tt-search-box-result-list.-highlighted {
+            background-color: #edf2f7 !important;
+            height: auto
+        }
+
+        .tt-search-box-result-list-address {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .tt-search-box-result-list-address>* {
+            display: block
+        }
+
+        .tt-search-box-result-list-bold+.tt-search-box-result-list-text-content {
+            margin-top: 4px
+        }
+
+        .tt-search-box-result-list-bold {
+            color: #000;
+            font-size: 14px;
+            font-weight: 700;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
+        }
+
+        .tt-search-box-close-icon {
+            cursor: pointer;
+            margin-left: auto;
+            fill: #ccc;
+            transition: fill .2s ease;
+        }
+
+        .tt-search-box-close-icon:hover {
+            fill: #7a7e80
+        }
+
+        .tt-search-box-close-icon.-hidden {
+            visibility: hidden
+        }
     </style>

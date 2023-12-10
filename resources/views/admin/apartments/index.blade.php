@@ -98,7 +98,7 @@
         background-color: #a3c422;
         color: black;
         padding: 5px;
-        border-radius: 5px;
+        border-radius: 20px;
         text-decoration: none;
         margin: 0 10px 0px;
         border: 1px solid black
@@ -112,5 +112,22 @@
         text-decoration: none;
         margin: 0 10px 0px;
         border: 1px solid black;
+    }
+
+    .ms-bt:hover {
+        background-color: rgba(0, 0, 0, 0.615);
+        color: #a3c422;
+    }
+
+    .fa-solid {
+        color: #a3c422;
+    }
+
+    .fa-solid:hover {
+        color: black;
+    }
+
+    .fa-star {
+        color: goldenrod;
     }
 </style>
