@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Api\ViewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::apiResource('services', ServiceController::class)->only('index');
 Route::post('/message', [MessageController::class, 'messageReceived']);
 
 // APARTMENT VIEW
-Route::post('/apartment/{id}', [ApartmentController::class, 'apartmentView']);
+Route::post('/view/increment/{apartment}', [ViewController::class, 'increment']);
 
 // LOGIN API
 Route::post('login', [LoginController::class, 'login']);

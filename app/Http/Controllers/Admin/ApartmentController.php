@@ -106,14 +106,6 @@ class ApartmentController extends Controller
     {
         $advertisements = DB::table('advertisement_apartment')->where('apartment_id', $apartment->id)->get();
 
-        $view = new View([
-            'date' => Carbon::now(),
-            'ip_address' => request()->ip(),
-            // Altri campi come 'data' se necessario
-        ]);
-
-        $apartment->views()->save($view);
-
         $count = DB::table('messages')
             ->where('apartment_id', $apartment->id)
             ->count();
