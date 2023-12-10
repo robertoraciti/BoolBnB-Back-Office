@@ -23,6 +23,20 @@
             list-style:none ;
 
         }
+        .button-1 {
+            background-color: #a3c422;
+            border: 1px solid black;
+            padding: 5px 35px;
+            border-radius: 20px;
+            font-weight: 400;
+            color: black;
+        }
+
+
+       .button-1:hover {
+    background-color: rgba(0, 0, 0, 0.332);
+    color: #dcd2c3;
+  }
     </style>
 
 @endsection
@@ -141,10 +155,15 @@
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" id="saveData"
-                                        onsubmit="jsFunction();return false">
-                                        {{ __('Register') }}
-                                    </button>
+                                    <button
+                                    type="submit" id="saveData"
+                                        onsubmit="jsFunction();return false"
+                                    class="button-1"
+                                    data-bs-toggle="modal"
+                                    :data-bs-target="'#loginModal'"
+                                  >
+                                  {{ __('Register') }}
+                                  </button>
                                 </div>
                             </div>
                         </form>
