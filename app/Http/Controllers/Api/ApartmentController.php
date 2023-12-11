@@ -19,7 +19,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+        $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'visibility', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
             ->where('visibility', 1)
             ->orderBy('id', 'desc')
@@ -46,7 +46,7 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+        $apartment = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'visibility', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
             ->where('id', $id)
             ->first();
@@ -63,7 +63,7 @@ class ApartmentController extends Controller
 
     public function homepageSearch($lat, $lon, $radius)
     {
-        $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+        $apartments = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'visibility', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
             // ->where('address', "LIKE", "%" . $address . "%")
             ->get();
@@ -95,8 +95,9 @@ class ApartmentController extends Controller
     // in caso aggiungere services come variabile
     {
         $filters = $request->all();
-        $apartments_query = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
+        $apartments_query = Apartment::select('id', 'user_id', 'name', 'description', 'address', 'latitude', 'longitude', 'visibility', 'rooms', 'beds', 'bathrooms', 'mq', 'price', 'cover_image')
             ->with('services:id,name,icon')
+            ->orderBy('visibility', 'desc')
             ->where('rooms', '>=', $rooms)
             ->where('beds', '>=', $beds);
         if (!empty($filters['activeServices'])) {

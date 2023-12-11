@@ -46,11 +46,30 @@
         #form-button {
             display: none;
         }
+
+        .ms-bt {
+            background-color: #a3c422;
+            color: black;
+            padding: 10px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin: 0 10px 0px;
+            border: 1px solid black;
+        }
+
+        .ms-bt:hover {
+            background-color: rgba(0, 0, 0, 0.615);
+            color: #a3c422;
+        }
     </style>
 @endsection
 
 @section('content')
-    <div class="container mt-5">
+<div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="{{ route('admin.apartments.index') }}" class="ms-bt mb-3"><i class="fa-solid fa-arrow-left me-2"></i>Go
+                Back</a>
+        </div>
         <h1>{{$apartment->name}}</h1>
         <div class="mb-5">
 

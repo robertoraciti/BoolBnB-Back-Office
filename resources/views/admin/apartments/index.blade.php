@@ -39,8 +39,8 @@
                                 <td class="text-center d-none d-md-table-cell">{{ $apartment->bathrooms }}</td>
                                 <td class="text-center d-none d-md-table-cell">{{ $apartment->mq }}</td>
                                 <td class="text-center d-none d-md-table-cell">€ {{ $apartment->price }}</td>
-                                <td class="text-center"><i
-                                        class="@if ($apartment->visibility == 1) ? ' fa-star fa-solid ' : ' fa-star fa-regular ' @endif "></i>
+                                <td class="text-center">
+                                    <i class="{{ $apartment->visibility == 1 ? 'fa-solid fa-star' : 'fa-regular fa-star' }}"></i>
                                 </td>
                                 <td>
                                     <a href= " {{ route('admin.apartments.show', $apartment) }}"> <i
@@ -118,10 +118,10 @@
         background-color: rgba(0, 0, 0, 0.615);
         color: #a3c422;
     }
-
+/* 
     .fa-solid:hover {
         color: black;
-    }
+    } */
 
     .fa-star {
         color: goldenrod;
